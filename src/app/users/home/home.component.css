@@ -1,0 +1,16 @@
+.jumbotron {
+    background: #000 url("../../../assets/notepad.jpg") no-repeat center center;
+    background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    color: #fff;
+    height: calc(100vh);
+  }
+  #landing-space {
+    padding-top: 16vw;
+  }
+  .thumbnail{
+      background-color: rgb(236, 222, 220);
+      border: 3px solid rgb(107, 104, 87);
+  }
