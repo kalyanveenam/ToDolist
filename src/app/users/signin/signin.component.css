@@ -147,4 +147,6 @@ a{
     color: black;
     transition: 100ms;
 }
-
+.forgotPassword{
+  height: 5vh;
+}

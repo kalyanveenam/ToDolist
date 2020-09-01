@@ -1,4 +1,44 @@
-<h1>signup works</h1>
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="register-div">
+      <div class="title">
+          <h1>register</h1>
+      </div>
+      <div class="register-form">
+          <form>
+              <div class="input-div">
+                  <input type="text" id="fullname" required autocomplete="off">
+                  <label for="fullname">full name</label>
+                  <div class="bar"></div>
+              </div>
+              <div class="input-div">
+                  <input type="text" id="username" required autocomplete="off">
+                  <label for="username">username</label>
+                  <div class="bar"></div>
 
+              </div>
+              <div class="input-div">
+                  <input type="text" id="email" required autocomplete="off">
+                  <label for="email">email</label>
+                  <div class="bar"></div>
+
+              </div>
+              <div class="input-div">
+                  <input type="password" id="pass" required autocomplete="off">
+                  <label for="pass">password</label>
+                  <div class="bar"></div>
+
+              </div>
+              <div class="input-div">
+                  <input type="button" value="next">
+              </div>
+          </form>
+      </div>
+      <div class="go-to-login">
+          <h3>you already have an account?</h3>
+          <h3> <a [routerLink]="['/user/signin']">sign in</a></h3>
+      </div>
+  </div>
+</div>
 
   <router-outlet></router-outlet>
