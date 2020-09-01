@@ -9,6 +9,7 @@ const routes: Routes = [
     component: DashboardComponent,
   },
   {
+    
     path: 'create',
     component: CreateListComponent,
   },
