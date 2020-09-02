@@ -1,80 +1,33 @@
-<mat-grid-list cols="2">
-  <mat-grid-tile rowHeight="40px">
-    <mat-card fxFlex="25" fxFlex.xs="100%" fxFlex.sm="33%">
-      <mat-toolbar color="primary"
-        ><mat-icon>donut_small</mat-icon>Active users</mat-toolbar
-      ><br />
-      <mat-selection-list #shoes [multiple]="false">
-        <mat-list-option *ngFor="let shoe of typesOfShoes" [value]="shoe">
-          {{shoe}}
-        </mat-list-option>
-      </mat-selection-list>
-      
-      <p>
-      
-      </p>
-
-    </mat-card>
-  </mat-grid-tile>
-
-  <mat-grid-tile>
-    <mat-accordion>
-        <mat-expansion-panel hideToggle>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Today
-            </mat-panel-title>
-            <mat-panel-description>
-      
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <p>This is the primary content of the panel.</p>
-        </mat-expansion-panel>
-        
-      </mat-accordion>
-      <mat-accordion>
-        <mat-expansion-panel hideToggle>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Overdew
-            </mat-panel-title>
-            <mat-panel-description>
-      
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <p>This is the primary content of the panel.</p>
-        </mat-expansion-panel>
-        
-      </mat-accordion>
-      <mat-accordion>
-        <mat-expansion-panel hideToggle>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Tomorrow
-            </mat-panel-title>
-            <mat-panel-description>
-      
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <p>This is the primary content of the panel.</p>
-        </mat-expansion-panel>
-        
-      </mat-accordion>
-      <mat-accordion>
-        <mat-expansion-panel hideToggle>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Over tomorrow
-            </mat-panel-title>
-            <mat-panel-description>
-      
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <p>This is the primary content of the panel.</p>
-        </mat-expansion-panel>
-        
-      </mat-accordion>
-
-
-  </mat-grid-tile>
-</mat-grid-list>
+<div class="list-group">
+    <br/>
+    <h3><b>Active Users</b> </h3>
+    <button type="button" class="list-group-item list-group-item-action active">
+      Cras justo odio
+    </button>
+    <button type="button" class="list-group-item list-group-item-action">Dapibus ac facilisis in</button>
+    <button type="button" class="list-group-item list-group-item-action">Morbi leo risus</button>
+    <button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
+    <button type="button" class="list-group-item list-group-item-action" >Vestibulum at eros</button>
+  </div>
+  <p class="buttons">
+    <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle first element</a>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Toggle second element</button>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Toggle both elements</button>
+  </p>
+  <div class="row">
+    <div class="col">
+      <div class="collapse multi-collapse" id="multiCollapseExample1">
+        <div class="card card-body buttons">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="collapse multi-collapse buttons" id="multiCollapseExample2">
+        <div class="card card-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+        </div>
+      </div>
+    </div>
+  </div>
+  

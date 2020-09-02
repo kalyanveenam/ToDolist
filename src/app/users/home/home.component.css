@@ -16,3 +16,10 @@ padding: 0px;
 .form{
   padding: 2vw;
 }
+.home-image{
+  background-image: url("../../../assets/Notes.jpg");
+}
+.jumbo{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: blue;
+}

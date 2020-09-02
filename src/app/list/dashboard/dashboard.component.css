@@ -1,0 +1,20 @@
+@media(min-width:0px) and (max-width:760px) {
+.list-group {
+    margin-right: 0vw;
+
+  padding: 0px;
+}
+}
+@media (min-width:960px) {
+    .list-group {
+        position: absolute;
+        margin-right: 80vw;
+    padding-right:80vw ;
+      padding: 0px;
+    }
+    .buttons{
+        float: right;
+        padding-top: 10vw;
+        padding-right:40vw ;
+    }
+}
