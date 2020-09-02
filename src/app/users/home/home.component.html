@@ -1,48 +1,32 @@
-<app-navbar></app-navbar>
-<div class="jumbotron">
+<div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1>Make a Todo list and share !</h1>
-    <p>
-      Looking for a place where you can create your own list and
-      <span class="label label-info">share across your friends</span> You can do
-      pretty much everything here, All you need to do is Sign up with ed-list
-      and invite your friends to share your lists with your friends.
+    <h1 class="display-4">WELCOME TO ED-Planner</h1>
+    <q class="lead">A goal without a plan is just a wish </q><br /><br />
+    <p class="para">
+      Here at ed-planner,we value your time and thus help you schedule your
+      plans.
     </p>
-    <button type="button" class="btn btn-primary" [routerLink]="['/user/signup']">Signup</button>
-    <div class="row" id="landing-space">
-      <div class="col-sm-4">
-        <div class="thumbnail">
-          <div class="caption">
-            <h3><b>1.Register With Us</b></h3>
-            <p class="text-secondary">
-              Create an account with edList, We would just need your basic
-              details!
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="thumbnail">
-          <div class="caption">
-            <h3><b>2.Create a to do list</b></h3>
-            <p class="text-secondary">
-              Add multiple sub items and sort it based on custom category
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="thumbnail">
-          <div class="caption">
-            <h3><b>3.Make a friends list</b></h3>
-            <p class="text-secondary">
-              Add your firends and share your list among your friends
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
+</div>
+
+<div  class="main-div">
+  <mat-card fxFlex="25" fxFlex.xs="100%" fxFlex.sm="33%">
+    <mat-toolbar color="primary"><mat-icon>login</mat-icon> Login page</mat-toolbar><br/>
+    <form fxLayoutAlign="stretch" fxLayout="column" class="form">
+      <mat-form-field class="example-full-width">
+        <mat-label>Email ID</mat-label>
+        <input matInput placeholder="Registered Email ID" />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Enter password" />
+      </mat-form-field>
+     <p>Dont have an account?<a [routerLink]="['/user/signup']">Signup</a></p> 
+      <button mat-raised-button color="accent" type="submit" [routerLink]="['/list']">Login</button>
+  
+    </form>
+  </mat-card>
 </div>
 
 <router-outlet></router-outlet>

@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  isLoggedin: boolean = localStorage.getItem('isLoggedin') == 'true';
 
   constructor( public router: Router) {
    
@@ -15,10 +14,6 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   
   }
-  logout() {
-    // this.http.logout().subscribe((Response) => {
-      localStorage.clear();
-     
-    };
+
   
 }

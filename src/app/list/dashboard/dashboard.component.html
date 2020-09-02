@@ -1,1 +1,80 @@
-<p>dashboard works!</p>
+<mat-grid-list cols="2">
+  <mat-grid-tile rowHeight="40px">
+    <mat-card fxFlex="25" fxFlex.xs="100%" fxFlex.sm="33%">
+      <mat-toolbar color="primary"
+        ><mat-icon>donut_small</mat-icon>Active users</mat-toolbar
+      ><br />
+      <mat-selection-list #shoes [multiple]="false">
+        <mat-list-option *ngFor="let shoe of typesOfShoes" [value]="shoe">
+          {{shoe}}
+        </mat-list-option>
+      </mat-selection-list>
+      
+      <p>
+      
+      </p>
+
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile>
+    <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Today
+            </mat-panel-title>
+            <mat-panel-description>
+      
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>This is the primary content of the panel.</p>
+        </mat-expansion-panel>
+        
+      </mat-accordion>
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Overdew
+            </mat-panel-title>
+            <mat-panel-description>
+      
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>This is the primary content of the panel.</p>
+        </mat-expansion-panel>
+        
+      </mat-accordion>
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Tomorrow
+            </mat-panel-title>
+            <mat-panel-description>
+      
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>This is the primary content of the panel.</p>
+        </mat-expansion-panel>
+        
+      </mat-accordion>
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Over tomorrow
+            </mat-panel-title>
+            <mat-panel-description>
+      
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>This is the primary content of the panel.</p>
+        </mat-expansion-panel>
+        
+      </mat-accordion>
+
+
+  </mat-grid-tile>
+</mat-grid-list>
