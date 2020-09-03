@@ -1,35 +1,56 @@
-<div online-list>
-  <mat-card class="list-active" fxFlex="25" fxFlex.xs="80%" fxFlex.sm="33%">
-    <mat-toolbar color="green"
-      ><mat-icon>donut_small</mat-icon>Active friends</mat-toolbar
-    ><br />
-    <mat-selection-list class="user-list" #shoes [multiple]="false">
-      <mat-list-option *ngFor="let shoe of typesOfShoes" [value]="shoe">
-        {{ shoe }}
-      </mat-list-option> </mat-selection-list
-    ><br />
-    <h3><b>Add Friend</b></h3>
-    <mat-form-field appearance="fill">
-      <mat-label>Select from users</mat-label>
-      <mat-select [(value)]="selected">
-        <mat-option>None</mat-option>
-        <mat-option value="option1">user1</mat-option>
-        <mat-option value="option2">user2</mat-option>
-        <mat-option value="option3">user3</mat-option>
-      </mat-select>
-      <br />
-      <br />
-      <p>You selected: {{ selected }}</p>
+<mat-sidenav-container >
+  <mat-sidenav 
+  mode="side"
+  #sidenav
+  id="sidenav"
+  
+  [class.menu-open]="isMenuOpened" [class.menu-open]="!isMenuOpened" opened>
+  
+  <button mat-button  color="accent">My Todo list</button><br/>
+  <button mat-button color="accent">Friends list</button><br/>
+  <button mat-button  color="accent">Add friends</button><br/>
+  <button mat-button  color="accent">Home</button></mat-sidenav>
 
-      
-      <br />
-      <br />
-      <button mat-raised-button color="accent" [routerLink]="['/user/signup']">
-        Add to friends
-      </button>
-    </mat-form-field>
-  </mat-card>
-</div>
-<button class="b" mat-button [routerLink]="['/user']">Home</button>
-<button mat-raised-button color="accent" [routerLink]="['/user/signup']">Signup</button>
 
+  <mat-sidenav-content>
+
+    <div online-list>
+      <mat-card class="list-active" fxFlex="25" fxFlex.xs="80%" fxFlex.sm="33%">
+        <mat-toolbar color="green"
+          ><mat-icon>donut_small</mat-icon>Active friends</mat-toolbar
+        ><br />
+        <mat-selection-list class="user-list" #shoes [multiple]="false">
+          <mat-list-option *ngFor="let shoe of typesOfShoes" [value]="shoe">
+            {{ shoe }}
+          </mat-list-option> </mat-selection-list
+        ><br />
+        <h3><b>Add Friend</b></h3>
+        <mat-form-field appearance="fill">
+          <mat-label>Select from users</mat-label>
+          <mat-select [(value)]="selected">
+            <mat-option>None</mat-option>
+            <mat-option value="option1">user1</mat-option>
+            <mat-option value="option2">user2</mat-option>
+            <mat-option value="option3">user3</mat-option>
+          </mat-select>
+          <br />
+          <br />
+          <p>You selected: {{ selected }}</p>
+    
+          
+          <br />
+          <br />
+          <button mat-raised-button color="accent" [routerLink]="['/user/signup']">
+            Add to friends
+          </button>
+        </mat-form-field>
+      </mat-card>
+    </div>
+    <button class="b" mat-button [routerLink]="['/user']">Home</button>
+    <button mat-raised-button color="accent" [routerLink]="['/user/signup']">Signup</button>
+    
+    
+
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

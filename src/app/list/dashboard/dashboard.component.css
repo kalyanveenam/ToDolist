@@ -1,12 +1,14 @@
-.list-active {
-  border: 1px solid rgb(68, 65, 65);
+.mat-sidenav-container{
+  height: 100%;
 }
-.user-list {
-  border: 1px solid rgb(65, 221, 51);
+
+.mat-sidenav{
+  background-color: blueviolet;
+  width: 25vw;
 }
-.online-list {
-  position: absolute !important;
+.menu-close{
+  width:12vw;
 }
-.b {
-  top: 0%;
+.menu-open{
+  width: 25vw;
 }
