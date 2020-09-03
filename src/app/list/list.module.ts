@@ -16,10 +16,14 @@ import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatCardModule} from '@angular/material/card';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [DashboardComponent, CreateListComponent],
   imports: [
+    MatCheckboxModule,
     MatSelectModule,
     CommonModule,
     ListRoutingModule,
@@ -32,7 +36,9 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatInputModule,
     MatListModule,
     MatExpansionModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatCardModule,
+    MatDatepickerModule
   ],
 })
 export class ListModule {}

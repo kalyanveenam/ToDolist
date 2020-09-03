@@ -1,34 +1,34 @@
 <div class="home-image">
-<div class="jumbotron jumbotron-fluid jumbo">
-  <div class="container">
-    <h1 class="display-4"><b>WELCOME TO ED-PLANNER</b></h1>
-    <q class="lead">A goal without a plan is just a wish </q><br /><br />
-    <p class="para">
-      Here at ed-planner,we value your time and thus help you schedule your
-      plans.
-    </p>
-  </div>
-</div>
+    <div class="jumbotron jumbotron-fluid jumbo">
+        <div class="container">
+            <h1 class="display-4"><b>WELCOME TO TODOER</b></h1>
+            <q class="lead">A goal without a plan is just a wish </q><br /><br />
+            <p class="para">
+                Start creating your to do list and share with friends
+            </p>
+        </div>
+    </div>
 
-<div  class="main-div">
-  <div class="spacer">  </div>
-  <mat-card fxFlex="25" fxFlex.xs="100%" fxFlex.sm="33%">
-    <mat-toolbar color="primary"><mat-icon>login</mat-icon> Login</mat-toolbar><br/>
-    <form fxLayoutAlign="stretch" fxLayout="column" class="form">
-      <mat-form-field class="example-full-width">
-        <mat-label>Email ID</mat-label>
-        <input matInput placeholder="Registered Email ID" />
-      </mat-form-field>
+    <div class="main-div">
+        <div class="spacer"> </div>
+        <mat-card fxFlex="25" fxFlex.xs="100%" fxFlex.sm="33%">
+            <mat-toolbar color="primary">
+                <mat-icon>login</mat-icon> Login</mat-toolbar><br/>
+            <form fxLayoutAlign="stretch" fxLayout="column" class="form">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Email ID</mat-label>
+                    <input matInput placeholder="Registered Email ID" />
+                </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Password</mat-label>
-        <input matInput placeholder="Enter password" />
-      </mat-form-field>
-     <p>Dont have an account?<a [routerLink]="['/user/signup']">Signup</a></p> 
-      <button mat-raised-button color="accent" type="submit" [routerLink]="['/list']">Login</button>
-  
-    </form>
-  </mat-card>
-</div>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Password</mat-label>
+                    <input matInput placeholder="Enter password" />
+                </mat-form-field>
+                <p>Dont have an account?<a [routerLink]="['/user/signup']">Signup</a></p>
+                <button mat-raised-button color="accent" type="submit" [routerLink]="['/list']">Login</button>
+
+            </form>
+        </mat-card>
+    </div>
 </div>
 <router-outlet></router-outlet>

@@ -12,9 +12,12 @@ import { MatButtonModule } from '@angular/material/button';
 import {CorouselComponent } from './corousel/corousel.component';
 import { MatIconModule } from '@angular/material/icon';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatDividerModule} from '@angular/material/divider';
 @NgModule({
   declarations: [NavbarComponent, LogoutComponent, CorouselComponent],
-  imports: [CommonModule, SharedRoutingModule,MatToolbarModule,MatButtonModule,MatIconModule,SlickCarouselModule],
+  imports: [CommonModule, SharedRoutingModule,MatToolbarModule,MatButtonModule,MatIconModule,MatDividerModule, SlickCarouselModule,MatExpansionModule,MatMenuModule],
   providers: [HttpService],
   exports: [NavbarComponent,CorouselComponent],
 })

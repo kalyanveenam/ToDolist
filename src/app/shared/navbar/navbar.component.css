@@ -1,4 +1,7 @@
-.spacer{
-
+.spacer {
     flex: 1 1 auto;
+}
+
+::ng-deep .menu_items {
+    width: 190px;
 }
