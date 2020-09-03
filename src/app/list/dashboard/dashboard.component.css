@@ -1,20 +1,12 @@
-@media(min-width:0px) and (max-width:760px) {
-.list-group {
-    margin-right: 0vw;
-
-  padding: 0px;
+.list-active {
+  border: 1px solid rgb(68, 65, 65);
 }
+.user-list {
+  border: 1px solid rgb(65, 221, 51);
 }
-@media (min-width:960px) {
-    .list-group {
-        position: absolute;
-        margin-right: 80vw;
-    padding-right:80vw ;
-      padding: 0px;
-    }
-    .buttons{
-        float: right;
-        padding-top: 10vw;
-        padding-right:40vw ;
-    }
+.online-list {
+  position: absolute !important;
+}
+.b {
+  top: 0%;
 }

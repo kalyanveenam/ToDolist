@@ -10,8 +10,10 @@ color: black;
   height: 30vh;
 }
 .main-div mat-card{
-margin-left:2vw ;
+margin-left:4vw ;
 padding: 0px;
+border: 5px black;
+border-radius: 10px;
 }
 .form{
   padding: 2vw;
@@ -22,4 +24,10 @@ padding: 0px;
 .jumbo{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: blue;
+  border: 2px black !important;
+
+}
+.spacer{
+
+  flex: 1 1 auto;
 }

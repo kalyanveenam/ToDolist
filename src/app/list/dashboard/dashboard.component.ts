@@ -11,5 +11,5 @@ export class DashboardComponent implements OnInit {
   typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
   ngOnInit(): void {
   }
-
+  selected = 'option2';
 }

@@ -1,33 +1,35 @@
-<div class="list-group">
-    <br/>
-    <h3><b>Active Users</b> </h3>
-    <button type="button" class="list-group-item list-group-item-action active">
-      Cras justo odio
-    </button>
-    <button type="button" class="list-group-item list-group-item-action">Dapibus ac facilisis in</button>
-    <button type="button" class="list-group-item list-group-item-action">Morbi leo risus</button>
-    <button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
-    <button type="button" class="list-group-item list-group-item-action" >Vestibulum at eros</button>
-  </div>
-  <p class="buttons">
-    <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle first element</a>
-    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Toggle second element</button>
-    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Toggle both elements</button>
-  </p>
-  <div class="row">
-    <div class="col">
-      <div class="collapse multi-collapse" id="multiCollapseExample1">
-        <div class="card card-body buttons">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="collapse multi-collapse buttons" id="multiCollapseExample2">
-        <div class="card card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-        </div>
-      </div>
-    </div>
-  </div>
-  
+<div online-list>
+  <mat-card class="list-active" fxFlex="25" fxFlex.xs="80%" fxFlex.sm="33%">
+    <mat-toolbar color="green"
+      ><mat-icon>donut_small</mat-icon>Active friends</mat-toolbar
+    ><br />
+    <mat-selection-list class="user-list" #shoes [multiple]="false">
+      <mat-list-option *ngFor="let shoe of typesOfShoes" [value]="shoe">
+        {{ shoe }}
+      </mat-list-option> </mat-selection-list
+    ><br />
+    <h3><b>Add Friend</b></h3>
+    <mat-form-field appearance="fill">
+      <mat-label>Select from users</mat-label>
+      <mat-select [(value)]="selected">
+        <mat-option>None</mat-option>
+        <mat-option value="option1">user1</mat-option>
+        <mat-option value="option2">user2</mat-option>
+        <mat-option value="option3">user3</mat-option>
+      </mat-select>
+      <br />
+      <br />
+      <p>You selected: {{ selected }}</p>
+
+      
+      <br />
+      <br />
+      <button mat-raised-button color="accent" [routerLink]="['/user/signup']">
+        Add to friends
+      </button>
+    </mat-form-field>
+  </mat-card>
+</div>
+<button class="b" mat-button [routerLink]="['/user']">Home</button>
+<button mat-raised-button color="accent" [routerLink]="['/user/signup']">Signup</button>
+
