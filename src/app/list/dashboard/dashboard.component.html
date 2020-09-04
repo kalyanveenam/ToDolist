@@ -57,6 +57,9 @@
     </mat-accordion>
   </mat-sidenav>
   <mat-sidenav-content>
+    <button mat-icon-button [routerLink]="['/list/create']">
+      <mat-icon matSuffix>add_circle_outline</mat-icon>Create
+    </button>
     <mat-accordion>
       <mat-expansion-panel
         (opened)="panelOpenState = true"
