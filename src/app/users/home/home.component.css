@@ -1,16 +1,33 @@
-.jumbotron {
-    background: #000 url("../../../assets/notepad.jpg") no-repeat center center;
-    background-size: 100% 100%;
-    -moz-background-size: 100% 100%;
-    -webkit-background-size: 100% 100%;
-    -o-background-size: 100% 100%;
-    color: #fff;
-    height: calc(100vh);
-  }
-  #landing-space {
-    padding-top: 16vw;
-  }
-  .thumbnail{
-      background-color: rgb(236, 222, 220);
-      border: 3px solid rgb(107, 104, 87);
-  }
+.lead{
+  color: rgb(70, 60, 161);
+  font-family: 'Courier New', Courier, monospace;
+}
+.para{
+color: black;
+}
+.image-card{
+  width: 30vw;
+  height: 30vh;
+}
+.main-div mat-card{
+margin-left:4vw ;
+padding: 0px;
+border: 5px black;
+border-radius: 10px;
+}
+.form{
+  padding: 2vw;
+}
+.home-image{
+  background-image: url("../../../assets/Notes.jpg");
+}
+.jumbo{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: blue;
+  border: 2px black !important;
+
+}
+.spacer{
+
+  flex: 1 1 auto;
+}

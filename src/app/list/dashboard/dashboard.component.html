@@ -1,1 +1,154 @@
-<p>dashboard works!</p>
+<mat-sidenav-container>
+  <mat-sidenav
+    mode="side"
+    #sidenav
+    id="sidenav"
+    [class.menu-open]="isMenuOpened"
+    [class.menu-open]="!isMenuOpened"
+   
+    opened
+  >
+    <button
+      style="height: 50px; width: 100%; text-align: left"
+      mat-button
+      color="accent"
+    >
+      My list</button
+    ><br />
+    <mat-divider></mat-divider>
+    <button
+      style="height: 50px; width: 100%; text-align: left"
+      mat-button
+      color="accent"
+    >
+      Friends List</button
+    ><br />
+    <mat-divider></mat-divider>
+    <button
+      style="height: 50px; width: 100%; text-align: left"
+      mat-button
+      color="accent"
+    >
+      Add friends</button
+    ><br />
+    <mat-divider></mat-divider>
+    <button
+      style="height: 50px; width: 100%; text-align: left"
+      mat-button
+      color="accent"
+    >
+      Home
+    </button>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header style="background: #8a2ce2; color: #ffc107">
+          <mat-panel-title style="color: #ffc107"> Status </mat-panel-title>
+        </mat-expansion-panel-header>
+        <button mat-button color="black" style="width: 100%; text-align: left">
+          Open</button
+        ><br />
+        <button mat-button color="black" style="width: 100%; text-align: left">
+          Done</button
+        ><br />
+        <button mat-button color="black" style="width: 100%; text-align: left">
+          Pending
+        </button>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-accordion>
+      <mat-expansion-panel
+        (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title> Completed </mat-panel-title>
+          <mat-panel-description>
+            Completed lists
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-card fxFlex="75" fxFlex.xs="100%" fxFlex.sm="33%">
+          <mat-card-header>
+      
+            <mat-card-title>Medical shop</mat-card-title>
+            <mat-card-subtitle>created by kalyan</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <section class="example-section">
+              <span class="example-list-section">
+                <mat-checkbox class="example-margin"
+                              [checked]="allComplete"
+                              [indeterminate]="someComplete()"
+                              (change)="setAll($event.checked)">
+                  {{task.name}}
+                </mat-checkbox>
+              </span>
+              <span class="example-list-section">
+                <ul>
+                  <li *ngFor="let subtask of task.subtasks">
+                    <mat-checkbox [(ngModel)]="subtask.completed"
+                                  [color]="subtask.color"
+                                  (ngModelChange)="updateAllComplete()">
+                      {{subtask.name}}
+                    </mat-checkbox>
+                  </li>
+                </ul>
+              </span>
+            </section>
+    
+          </mat-card-content>
+        
+        </mat-card>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <br />
+    <br />
+
+    <mat-accordion>
+      <mat-expansion-panel
+        (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title> Active Lists </mat-panel-title>
+          <mat-panel-description> Your Current lists </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-card class="example-card">
+          <mat-card-header>
+      
+            <mat-card-title>Medical shop</mat-card-title>
+            <mat-card-subtitle>created by kalyan</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <section class="example-section">
+              <span class="example-list-section">
+                <mat-checkbox class="example-margin"
+                              [checked]="allComplete"
+                              [indeterminate]="someComplete()"
+                              (change)="setAll($event.checked)">
+                  {{task.name}}
+                </mat-checkbox>
+              </span>
+              <span class="example-list-section">
+                <ul>
+                  <li *ngFor="let subtask of task.subtasks">
+                    <mat-checkbox [(ngModel)]="subtask.completed"
+                                  [color]="subtask.color"
+                                  (ngModelChange)="updateAllComplete()">
+                      {{subtask.name}}
+                    </mat-checkbox>
+                  </li>
+                </ul>
+              </span>
+            </section>
+    
+          </mat-card-content>
+        
+        </mat-card>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <br/>
+   
+  </mat-sidenav-content>
+</mat-sidenav-container>

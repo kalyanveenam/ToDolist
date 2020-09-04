@@ -1,0 +1,14 @@
+<ngx-slick-carousel
+  class="carousel"
+  #slickModal="slick-carousel"
+  [config]="slideConfig"
+>
+  <div ngxSlickItem *ngFor="let slide of slides">
+    <img
+      src="../../../assets/notepad.jpg"
+      alt=""
+      width="50%"
+      height="70%"
+    />
+  </div>
+</ngx-slick-carousel>

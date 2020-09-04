@@ -1,31 +1,36 @@
+<mat-toolbar color="primary" class="mat-elevation-z">
+    <span>
+    <mat-icon>post_add</mat-icon> ED-Planner
+  </span>
+    <div class="spacer"> </div>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon matSuffix>person_search</mat-icon>
+  </button>
+    <mat-menu #menu="matMenu" class="menu_items">
+        <h3 mat-subheader style="text-align: center;  height: 12px;">Your friends</h3>
+        <mat-divider></mat-divider>
+        <button mat-menu-item>
+      <mat-icon [ngStyle]="{'color':'green'}">check_circle</mat-icon>
+      <span>Karthik</span>
+    </button>
+        <button mat-menu-item disabled>
+      <mat-icon [ngStyle]="{'color':'green'}">check_circle</mat-icon>
+      <span>Kalyan</span>
+   
+    </button>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader style="text-align: center;  height: 12px;">You may know</h3>
+        <mat-divider></mat-divider>
+        <button mat-menu-item>
+      <mat-icon >person_add</mat-icon>
+      <span>Munni</span>
+    </button>
+    </mat-menu>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-    />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  </head>
-  <body>
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">WebSiteName</a>
-        </div>
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">Page 1</a></li>
-          <li><a href="#">Page 2</a></li>
-          <li><a href="#">Page 3</a></li>
-        </ul>
-      </div>
-    </nav>
+    <button mat-button [routerLink]="['/user']">Home</button>
+    <button mat-raised-button color="accent" [routerLink]="['/user/signup']">Signup</button>
 
-  </body>
-</html>
+</mat-toolbar>

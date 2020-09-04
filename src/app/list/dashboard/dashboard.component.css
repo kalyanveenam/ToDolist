@@ -1,0 +1,26 @@
+.mat-sidenav-container{
+  height: 100%;
+}
+
+.mat-sidenav{
+  background-color: blueviolet;
+  width: 23vw;
+}
+.menu-close{
+  width:12vw;
+}
+.menu-open{
+  width: 25vw;
+}
+.example-section {
+  margin: 12px 0;
+}
+
+.example-margin {
+  margin: 0 12px;
+}
+
+ul {
+  list-style-type: none;
+  margin-top: 4px;
+}
