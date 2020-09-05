@@ -14,9 +14,12 @@ import {MatInputModule} from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ListModule } from '../list/list.module';
 import { MatIconModule } from '@angular/material/icon';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 @NgModule({
   declarations: [HomeComponent, SignupComponent, SigninComponent],
-  imports: [MatIconModule,CommonModule,MatToolbarModule, ReactiveFormsModule,MatInputModule, UsersRoutingModule,MatButtonModule, SharedModule,MatFormFieldModule,MatCardModule,MatGridListModule,FlexLayoutModule,ListModule],
+  imports: [NgxSpinnerModule,FormsModule,MatIconModule,CommonModule,MatToolbarModule, ReactiveFormsModule,MatInputModule, UsersRoutingModule,MatButtonModule, SharedModule,MatFormFieldModule,MatCardModule,MatGridListModule,FlexLayoutModule,ListModule, SharedModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class UsersModule {}

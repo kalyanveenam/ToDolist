@@ -1,26 +1,57 @@
 <body>
 <div fxLayoutAlign="center center" class="main-div" fxFlexFill>
   <div class="spacer">  </div>
-  <mat-card fxFlex="25" fxFlex.xs="100%" fxFlex.sm="33%">
+  <mat-card class="card"fxFlex="25" fxFlex.xs="100%" fxFlex.sm="33%">
     <mat-toolbar color="primary"><mat-icon>login</mat-icon> Signup</mat-toolbar><br/>
-    <form fxLayoutAlign="stretch" fxLayout="column" class="form">
+    <form [formGroup]="userEmails" (ngSubmit)="onSubmit()" fxLayoutAlign="stretch" fxLayout="column" class="form">
+      <mat-form-field class="example-full-width">
+        <mat-label>Full Name</mat-label>
+        <input matInput [class.is-invalid]="userEmails.get('name').invalid && userEmails.get('name').touched" formControlName="name" placeholder="Full name" />
+      </mat-form-field>
+      <div *ngIf="(textControl.invalid && textControl.touched) || textControl.dirty">
+        <small *ngIf="textControl.errors?.required" class="text-danger">First Name is required</small>
+    </div>
       <mat-form-field class="example-full-width">
         <mat-label>Email ID</mat-label>
-        <input matInput placeholder="Email ID" />
+        <input matInput formControlName="email" [class.is-invalid]="userEmails.get('email').invalid && userEmails.get('email').touched" placeholder="Email ID" />
       </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <mat-label>Mobile number</mat-label>
-        <input matInput placeholder="Mobile number" />
-      </mat-form-field>
+      <div *ngIf="(primEmail.invalid && primEmail.touched) || primEmail.dirty">
+        <small *ngIf="primEmail.errors?.required" class="text-danger">Primary email is required</small>
+        <!--question mark(?) is a safe navigation operator-->
+        <small *ngIf="primEmail.errors?.pattern" class="text-danger">Please provide a valid email address</small>
+    </div>
 
       <mat-form-field class="example-full-width">
-        <mat-label>Password</mat-label>
-        <input matInput placeholder="Enter password" />
+        <mat-label>Mobile number</mat-label>
+        <input matInput [class.is-invalid]="userEmails.get('phoneno').invalid && userEmails.get('phoneno').touched" type="text" formControlName="phoneno" placeholder="Mobile number" />
       </mat-form-field>
+      <div *ngIf="(phoneNumberControl.invalid && phoneNumberControl.touched) || phoneNumberControl.dirty">
+        <small *ngIf="phoneNumberControl.errors?.required" class="text-danger">Phone Number is required</small>
+        <!--question mark(?) is a safe navigation operator-->
+        <small *ngIf="phoneNumberControl.errors?.pattern" class="text-danger">Please provide a valid phone number with country code. Ex- +917777777777</small>
+    </div>
+      <mat-form-field class="example-full-width">
+        <mat-label>Password</mat-label>
+        <input   [class.is-invalid]="userEmails.get('password').invalid && userEmails.get('password').touched" id="password" type="password" formControlName="password" matInput placeholder="Enter password" />
+      </mat-form-field>
+      <div *ngIf="(passwordValidator.invalid && passwordValidator.touched) || passwordValidator.dirty">
+        <small *ngIf="passwordValidator.errors?.required" class="text-danger">Password is required</small>
+        <!--question mark(?) is a safe navigation operator-->
+        <small *ngIf="passwordValidator.errors?.pattern" class="text-danger">Password length should be atleast 8 and should have a number in it. </small>
+    </div>
      <p>Already have an account?<a [routerLink]="['/user']">signin</a></p> 
-      <button mat-raised-button color="accent" type="submit" [routerLink]="['/list']">Login</button>
+      <button mat-raised-button color="accent" type="submit" >Signup</button>
   
     </form>
   </mat-card>
 </div>
 </body>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: rgb(192, 192, 192)">Loading...</p>
+</ngx-spinner>

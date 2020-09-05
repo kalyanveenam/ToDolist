@@ -5,6 +5,9 @@
     border-radius: 10px;
 
     }
+    .card{
+      margin-right: 3vw;
+    }
     .form{
         padding: 2vw;
         padding-bottom: 7vh;

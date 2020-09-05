@@ -15,9 +15,10 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatDividerModule} from '@angular/material/divider';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [NavbarComponent, LogoutComponent, CorouselComponent],
-  imports: [CommonModule, SharedRoutingModule,MatToolbarModule,MatButtonModule,MatIconModule,MatDividerModule, SlickCarouselModule,MatExpansionModule,MatMenuModule],
+  imports: [FormsModule,ReactiveFormsModule,CommonModule, SharedRoutingModule,MatToolbarModule,MatButtonModule,MatIconModule,MatDividerModule, SlickCarouselModule,MatExpansionModule,MatMenuModule],
   providers: [HttpService],
   exports: [NavbarComponent,CorouselComponent],
 })

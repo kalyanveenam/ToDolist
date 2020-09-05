@@ -1,14 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { HttpService } from 'src/app/http.service';
+import { Router } from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  constructor() { }
+ public isValidCredentials:boolean=false;
+ public userNotFound;
+  constructor(private http: HttpService, private Router: Router,private spinner: NgxSpinnerService) { }
   get emailControl() {
     return this.loginForm.get('email')
   }
@@ -25,7 +29,31 @@ export class HomeComponent implements OnInit {
     ])
   });
   public email;
+  onSubmit=()=>{
+    this.spinner.show();
+    var value = this.loginForm.value;
+    this.http.signin(value.email,value.password).subscribe(
+      (result)=>{
+      console.log(result)
+      if(result){
+        this.spinner.hide();
+    this.Router.navigate(['/list'])
+      }
+      else{
+      }
+    },
+    (error)=>{
+      this.spinner.hide();
+      this.userNotFound=error.error.error.data;
+      console.log(error.error.error.data)
+      this.isValidCredentials=true;
+    }
+    
+    
+    )
+    console.log(value)
 
+  }
   ngOnInit(): void {
   }
 

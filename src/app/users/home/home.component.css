@@ -18,6 +18,10 @@ border-radius: 10px;
 .form{
   padding: 2vw;
 }
+.card{
+  margin-right: 3vw;
+background-color:#eee;
+}
 .home-image{
   background-image: url("../../../assets/Notes.jpg");
 }
@@ -30,4 +34,9 @@ border-radius: 10px;
 .spacer{
 
   flex: 1 1 auto;
+}
+.cred-invalid{
+  color: rgb(37, 25, 25);
+  border: 1px solid rgb(185, 0, 0);
+  padding: 1vw;
 }
