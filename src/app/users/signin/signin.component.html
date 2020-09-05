@@ -3,12 +3,17 @@
   <div class="register-div">
     <div class="title">
       <h1>Login</h1>
+      <div>Primary email is required</div>
     </div>
     <div class="register-form">
-      <form>
+      <form  >
         <div class="input-div">
-          <input type="text" id="email" required autocomplete="off" />
+
+          <input type="text" id="email" formControlName="email" required autocomplete="off" />
           <label for="email">email</label>
+                  
+            <!--question mark(?) is a safe navigation operator-->
+
           <div class="bar"></div>
         </div>
 

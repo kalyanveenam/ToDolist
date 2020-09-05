@@ -14,8 +14,9 @@ import {MatInputModule} from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ListModule } from '../list/list.module';
 import { MatIconModule } from '@angular/material/icon';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [HomeComponent, SignupComponent, SigninComponent],
-  imports: [MatIconModule,CommonModule,MatToolbarModule,MatInputModule, UsersRoutingModule,MatButtonModule, SharedModule,MatFormFieldModule,MatCardModule,MatGridListModule,FlexLayoutModule,ListModule],
+  imports: [MatIconModule,CommonModule,MatToolbarModule, ReactiveFormsModule,MatInputModule, UsersRoutingModule,MatButtonModule, SharedModule,MatFormFieldModule,MatCardModule,MatGridListModule,FlexLayoutModule,ListModule],
 })
 export class UsersModule {}
