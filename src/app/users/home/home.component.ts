@@ -4,6 +4,7 @@ import { Validators } from '@angular/forms';
 import { HttpService } from 'src/app/http.service';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -12,7 +13,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 export class HomeComponent implements OnInit {
  public isValidCredentials:boolean=false;
  public userNotFound;
-  constructor(private http: HttpService, private Router: Router,private spinner: NgxSpinnerService) { }
+  constructor(private http: HttpService, private Router: Router,private spinner: NgxSpinnerService,private toastr: ToastrService) { }
   get emailControl() {
     return this.loginForm.get('email')
   }
@@ -30,17 +31,18 @@ export class HomeComponent implements OnInit {
   });
   public email;
   onSubmit=()=>{
+    this.toastr.success('Hello world!', 'Toastr fun!');
     this.spinner.show();
     var value = this.loginForm.value;
     this.http.signin(value.email,value.password).subscribe(
       (result)=>{
-      console.log(result)
-      if(result){
+        localStorage.setItem('authToken',result['data']['token']['token'])
+        localStorage.setItem('id',result['data']['userDetails']['_id'])
+      console.log(result['data']['token'])
+      
         this.spinner.hide();
     this.Router.navigate(['/list'])
-      }
-      else{
-      }
+    
     },
     (error)=>{
       this.spinner.hide();

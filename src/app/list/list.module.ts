@@ -20,9 +20,13 @@ import {MatCardModule} from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
+
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [DashboardComponent, CreateListComponent],
   imports: [
+    
+    ToastrModule.forRoot(),
     MatCheckboxModule,
     MatSelectModule,
     CommonModule,

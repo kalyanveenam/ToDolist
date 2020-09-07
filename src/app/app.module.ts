@@ -13,9 +13,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { UsersModule } from './users/users.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [AppComponent],
-  imports: [FormsModule,ReactiveFormsModule,UsersModule,BrowserModule, AppRoutingModule, SharedModule, ReactiveFormsModule,HttpClientModule, BrowserAnimationsModule,MatToolbarModule,MatIconModule,NgxSpinnerModule],
+  imports: [BrowserAnimationsModule, ToastrModule,FormsModule,ReactiveFormsModule,UsersModule,BrowserModule, AppRoutingModule, SharedModule, ReactiveFormsModule,HttpClientModule,MatToolbarModule,MatIconModule,NgxSpinnerModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [HttpService],
   bootstrap: [AppComponent],

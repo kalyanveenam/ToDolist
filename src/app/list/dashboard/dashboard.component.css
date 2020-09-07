@@ -19,8 +19,26 @@
 .example-margin {
   margin: 0 12px;
 }
-
+.online-users{
+  width: 80%;
+}
 ul {
   list-style-type: none;
   margin-top: 4px;
+}
+.dot {
+  height: 25px;
+  width: 25px;
+  background-color: green;
+  border-radius: 50%;
+  display: inline-block;
+}
+@media (max-width: 767px) {
+  .dot {
+    height: 25px;
+    width: 32px;
+    background-color: green;
+    border-radius: 50%;
+    display: inline-block;
+  }
 }
