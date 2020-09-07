@@ -11,7 +11,7 @@ export class SocketService {
   public baseUrl = this.dev;
   private socket;
   constructor(public http: HttpClient) {
-    this.socket=io('http://localhost:3001')
+    this.socket=io('https://todolistbe.herokuapp.com')
    }
    public verifyUser=()=>{
      return Observable.create((observer)=>{
