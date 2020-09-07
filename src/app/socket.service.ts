@@ -8,10 +8,11 @@ import { Observable } from 'rxjs';
 export class SocketService {
   public prod = 'https://todolistbe.herokuapp.com';
   public dev = 'http://localhost:3001';
-  public baseUrl = this.dev;
+  public baseUrl = this.prod;
   private socket;
   constructor(public http: HttpClient) {
     this.socket=io('https://todolistbe.herokuapp.com')
+    
    }
    public verifyUser=()=>{
      return Observable.create((observer)=>{
