@@ -108,26 +108,27 @@
           <mat-panel-title> Active Lists </mat-panel-title>
           <mat-panel-description> Your Current lists </mat-panel-description>
         </mat-expansion-panel-header>
-        <mat-card class="active-cards" *ngFor="let card of lists">
+        <mat-card class="active-cards" *ngFor="let list of lists">
           <mat-card-header>
 
-            <mat-card-title>{{card.title}}</mat-card-title>
+            <mat-card-title>{{list.title}}</mat-card-title>
             <mat-card-subtitle>created by kalyan</mat-card-subtitle>
           </mat-card-header>
           <mat-card-content>
-            <section class="example-section" *ngFor="let tasks of tasks">
+            <section>
               <span class="example-list-section">
                 <mat-checkbox class="example-margin" [checked]="allComplete" [indeterminate]="someComplete()"
-                  (change)="setAll($event.checked)">
-                  test
+                  *ngFor="let tasks of getTasks(list)" (change)="setAll($event.checked)">
+                  {{tasks.title}}
+                  <br />
+                  <br />
                 </mat-checkbox>
               </span>
               <span class="example-list-section">
                 <ul>
-                  <li *ngFor="let subtask of task.subtasks">
-                    <mat-checkbox [(ngModel)]="subtask.completed" [color]="subtask.color"
-                      (ngModelChange)="updateAllComplete()">
-                      {{subtask.name}}
+                  <li>
+                    <mat-checkbox (ngModelChange)="updateAllComplete()" *ngFor="let subtasks of getSubTasks(tasks)">
+                      subtasks[0].title
                     </mat-checkbox>
                   </li>
                 </ul>

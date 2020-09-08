@@ -4,7 +4,6 @@ import { Validators } from '@angular/forms';
 import { HttpService } from 'src/app/http.service';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
-import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class HomeComponent implements OnInit {
  public isValidCredentials:boolean=false;
  public userNotFound;
-  constructor(private http: HttpService, private Router: Router,private spinner: NgxSpinnerService,private toastr: ToastrService) { }
+  constructor(private http: HttpService, private Router: Router,private spinner: NgxSpinnerService) { }
   get emailControl() {
     return this.loginForm.get('email')
   }
@@ -31,7 +30,6 @@ export class HomeComponent implements OnInit {
   });
   public email;
   onSubmit=()=>{
-    this.toastr.success('Hello world!', 'Toastr fun!');
     this.spinner.show();
     var value = this.loginForm.value;
     this.http.signin(value.email,value.password).subscribe(

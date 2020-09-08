@@ -5,7 +5,7 @@ import { ListRoutingModule } from './list-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreateListComponent } from './create-list/create-list.component';
 import { MatGridListModule } from '@angular/material/grid-list';
-
+import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,16 +20,13 @@ import {MatCardModule} from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
-
-import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [DashboardComponent, CreateListComponent],
   imports: [
-    
-    ToastrModule.forRoot(),
     MatCheckboxModule,
     MatSelectModule,
     CommonModule,
+    FormsModule,
     ListRoutingModule,
     MatGridListModule,
     FlexLayoutModule,

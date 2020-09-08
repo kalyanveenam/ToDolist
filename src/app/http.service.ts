@@ -47,4 +47,16 @@ export class HttpService {
 
     return this._http.get(this.baseUrl + '/get/list', { headers: header });
   }
+    public createList(payload) {
+      console.log('ikkadiki ra'+JSON.stringify(payload))
+      let header = {};
+    header['Authorization'] = localStorage.getItem('authToken');
+ header['Content-Type'] = 'application/json';
+   
+    return this._http.post(
+      this.baseUrl + '/create/list',
+      payload,
+      { headers: header }
+    );
+  }
 }

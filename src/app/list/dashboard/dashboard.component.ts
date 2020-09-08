@@ -130,7 +130,7 @@ export class DashboardComponent implements OnInit {
         }
         this.userList.push(tmp);
       }
-      console.log(this.userList)
+    
     })
   }
   offlineUser() {
@@ -145,10 +145,19 @@ export class DashboardComponent implements OnInit {
     this.http.getLists().subscribe((response) => {
 this.lists=(response["data"])
    for (let i=0;i<this.lists.length;i++){
-  this.tasks=   response["data"][i].tasks;
+  console.log(response['data'])
+    this.tasks=   response["data"][i].tasks;
+
  this.allTasks.push(this.tasks)
    }
-    console.log(this.allTasks)
+ //   console.log(this.tasks)
     });
+  }
+  public getTasks(list){
+return list.tasks;
+  }
+  public getSubTasks(task){
+    console.log(task)
+    return task.subtask;
   }
 }

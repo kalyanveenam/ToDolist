@@ -1,26 +1,64 @@
 <body>
-    <div fxLayoutAlign="center center" class="main-div" fxFlexFill>
-      <div class="spacer">  </div>
-      <mat-card fxFlex="25" fxFlex.xs="100%" fxFlex.sm="33%">
-        <mat-toolbar color="primary"><mat-icon>note_add</mat-icon> Create list</mat-toolbar><br/>
-        <form fxLayoutAlign="stretch" fxLayout="column" class="form">
-          <mat-form-field class="example-full-width">
-            <mat-label>Title</mat-label>
-            <input matInput placeholder="Title for your list" />
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-            <mat-label>Add item</mat-label>
-            <input matInput placeholder="Mobile number" />
-          </mat-form-field>
-    
-          <mat-form-field class="example-full-width">
-            <mat-label>Password</mat-label>
-            <input matInput placeholder="Enter password" />
-          </mat-form-field>
-         <p>Already have an account?<a [routerLink]="['/user']">signin</a></p> 
-          <button mat-raised-button color="accent" type="submit" [routerLink]="['/list']">Login</button>
-      
-        </form>
-      </mat-card>
-    </div>
-    </body>
+  <script>
+    function addTas() {
+      console.log('yaaayy');
+    }
+
+  </script>
+  <div fxLayoutAlign="center center" class="main-div" fxFlexFill>
+    <div class="spacer"> </div>
+    <mat-card fxFlex="25" fxFlex.xs="100%" fxFlex.sm="33%">
+      <mat-toolbar color="primary">
+        <mat-icon>note_add</mat-icon> Create list
+      </mat-toolbar><br />
+      <form ngForm #formData=ngForm (submit)="createList(formData)" fxLayoutAlign="stretch" fxLayout="column"
+        class="form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Title</mat-label>
+          <input name="title" ngModel matInput placeholder="Title for your list" />
+        </mat-form-field>
+
+        <mat-accordion>
+
+          <mat-expansion-panel *ngFor="let task of mytasks">
+            <mat-expansion-panel-header>
+              <mat-panel-title> Task </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-form-field class="example-full-width">
+              <mat-label>Title</mat-label>
+              <input ngModel matInput name="task_title_{{task}}" placeholder="Title for your task" />
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Description</mat-label>
+              <input ngModel matInput name="task_desc_{{task}}" placeholder="Title for your task" />
+            </mat-form-field>
+            <mat-expansion-panel *ngFor="let subtask of getSubtasks(task)">
+              <mat-expansion-panel-header>
+                <mat-panel-title>Sub Tasks</mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-form-field class="example-full-width">
+                <mat-label>Description</mat-label>
+                <input ngModel matInput name="subtask_{{task}}_{{subtask}}" placeholder="Title for your task" />
+              </mat-form-field>
+            </mat-expansion-panel>
+
+            <br />
+            <div style="text-align: center;">
+              <button mat-raised-button color="accent" (click)="addSubTask(task)" type="button">Add Sub Task</button>
+            </div>
+            <br />
+            <br />
+          </mat-expansion-panel>
+
+        </mat-accordion>
+        <br />
+        <div style="text-align: center;">
+          <button mat-raised-button color="accent" type="submit" [routerLink]="[ '/create']">Create List</button>
+          <button style="margin-left: 5px;" mat-raised-button color="accent" (click)="addTask()" type="button">Add new
+            task</button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+
+</body>
