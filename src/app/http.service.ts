@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HttpService {
   public prod = 'https://todolistbe.herokuapp.com/api/v1';
-  public dev = 'http://localhost:3000/api/v1';
+  public dev = 'http://localhost:3001/api/v1';
   public baseUrl = this.prod;
   constructor(public _http: HttpClient) {}
   public logout() {
@@ -39,5 +39,12 @@ export class HttpService {
       }),
       { headers: { 'Content-Type': 'application/json' } }
     );
+  }
+  public getLists() {
+    console.log('mari ikkadiki?')
+    var header = {};
+    header['Authorization'] = localStorage.getItem('authToken');
+
+    return this._http.get(this.baseUrl + '/get/list', { headers: header });
   }
 }

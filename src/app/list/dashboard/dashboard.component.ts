@@ -1,33 +1,60 @@
-import { Component, OnInit } from '@angular/core';
-import {ThemePalette} from '@angular/material/core';
-import {SocketService} from '../../socket.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  ThemePalette
+} from '@angular/material/core';
+import {
+  SocketService
+} from '../../socket.service';
+import {
+  MatSnackBar
+} from '@angular/material/snack-bar';
+
+import {
+  HttpService
+} from 'src/app/http.service';
+import {
+  NgxSpinnerService
+} from "ngx-spinner";
 export interface Task {
   name: string;
   completed: boolean;
   color: ThemePalette;
-  subtasks?: Task[];
+  subtasks ? : Task[];
 }
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
-  providers:[SocketService]
+  providers: [SocketService]
 })
 export class DashboardComponent implements OnInit {
- public authToken: any=localStorage.getItem('authToken');
- public userList:any=[];
- public userNotification;
- onlineUsers=[];
+  public authToken: any = localStorage.getItem('authToken');
+  public userList: any = [];
+  public userNotification;
+  onlineUsers = [];
   task: Task = {
     name: 'Get Tablets',
     completed: false,
     color: 'primary',
-    subtasks: [
-      {name: 'Asthaphen', completed: false, color: 'primary'},
-      {name: 'Ascoril', completed: false, color: 'primary'},
-      {name: 'Unicontin', completed: false, color: 'primary'}
+    subtasks: [{
+        name: 'Asthaphen',
+        completed: false,
+        color: 'primary'
+      },
+      {
+        name: 'Ascoril',
+        completed: false,
+        color: 'primary'
+      },
+      {
+        name: 'Unicontin',
+        completed: false,
+        color: 'primary'
+      }
     ]
   };
   allComplete: boolean = false;
@@ -50,66 +77,72 @@ export class DashboardComponent implements OnInit {
     }
     this.task.subtasks.forEach(t => t.completed = completed);
   }
+
   panelOpenState = false;
-  constructor(public SocketService: SocketService,private _snackBar: MatSnackBar) {
+  constructor(public SocketService: SocketService, private _snackBar: MatSnackBar, private http: HttpService, private spinner: NgxSpinnerService) {
     this.getOnlineUsers();
 
   }
-  
+
   isMenuOpened: boolean = true;
-  typesOfShoes: string[] = [
-    'Boots',
-    'Clogs',
-    'Loafers',
-    'Moccasins',
-    'Sneakers',
-  ];
+  activeOpenState = true;
   ngOnInit(): void {
+    this.getLists();
+    this.activeOpenState = true;
     this.verifyUserConfirmation();
     this.getOnlineUsers();
   }
-public verifyUserConfirmation:any=()=>{
-  this.SocketService.verifyUser().subscribe((data)=>{
-    console.log(this.authToken)
-    this.SocketService.setUser(this.authToken);
-    this.getOnlineUsers();
-    this.offlineUser();
-  })
-}
+  public verifyUserConfirmation: any = () => {
+    this.SocketService.verifyUser().subscribe((data) => {
+      console.log(this.authToken)
+      this.SocketService.setUser(this.authToken);
+      this.getOnlineUsers();
+      this.offlineUser();
+    })
+  }
+
   selected = 'option2';
   toggleNavbar() {
     console.log('toggled' + this.isMenuOpened);
     this.isMenuOpened = !this.isMenuOpened;
   }
-  getOnlineUsers(){
-this.SocketService.welcomeUser(localStorage.getItem('id')).subscribe((data)=>{
-  this.userNotification=data;
-  console.log("hi:"+this.userNotification)
-})
-this.SocketService.userOnline().subscribe((data)=>{
-console.log(data)
-this._snackBar.open(data,'User online', {
-  duration: 2000,
-});
-})
-    this.SocketService.userList().subscribe((user)=>{
-    
+  getOnlineUsers() {
+    this.SocketService.welcomeUser(localStorage.getItem('id')).subscribe((data) => {
+      this.userNotification = data;
+      console.log("hi:" + this.userNotification)
+    })
+    this.SocketService.userOnline().subscribe((data) => {
+      console.log(data)
+      this._snackBar.open(data, 'User online', {
+        duration: 2000,
+      });
+    })
+    this.SocketService.userList().subscribe((user) => {
+
       this.userList = [];
       for (let x in user) {
-        let tmp = { 'user': x, 'name': user[x] }
+        let tmp = {
+          'user': x,
+          'name': user[x]
+        }
         this.userList.push(tmp);
       }
       console.log(this.userList)
- 
-    
     })
   }
-  offlineUser(){
-    this.SocketService.userOffline().subscribe((user)=>{
-      this._snackBar.open(user,'User offline', {
+  offlineUser() {
+    this.SocketService.userOffline().subscribe((user) => {
+      this._snackBar.open(user, 'User offline', {
         duration: 2000,
       });
       console.log(user)
     })
+  }
+  public getLists() {
+    console.log('ikkadiki ra')
+    this.http.getLists().subscribe((response) => {
+
+      console.log(response)
+    });
   }
 }
