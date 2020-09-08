@@ -41,7 +41,7 @@ export class HttpService {
     );
   }
   public getLists() {
-    console.log('mari ikkadiki?')
+
     var header = {};
     header['Authorization'] = localStorage.getItem('authToken');
 

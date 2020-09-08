@@ -83,9 +83,12 @@ export class DashboardComponent implements OnInit {
     this.getOnlineUsers();
 
   }
-
+ public lists;
+ public tasks;
+ public allTasks=[];
   isMenuOpened: boolean = true;
   activeOpenState = true;
+ 
   ngOnInit(): void {
     this.getLists();
     this.activeOpenState = true;
@@ -139,10 +142,13 @@ export class DashboardComponent implements OnInit {
     })
   }
   public getLists() {
-    console.log('ikkadiki ra')
     this.http.getLists().subscribe((response) => {
-
-      console.log(response)
+this.lists=(response["data"])
+   for (let i=0;i<this.lists.length;i++){
+  this.tasks=   response["data"][i].tasks;
+ this.allTasks.push(this.tasks)
+   }
+    console.log(this.allTasks)
     });
   }
 }
