@@ -13,6 +13,10 @@ const routes: Routes = [
     path: 'create',
     component: CreateListComponent,
   },
+  {
+    path:'dashboard',
+    component: DashboardComponent
+  }
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
