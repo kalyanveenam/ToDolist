@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/http.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-list',
@@ -12,7 +13,7 @@ export class CreateListComponent implements OnInit {
   mytasks = [];
   public subtasks = [];
   public subtask = {};
-  constructor(private http: HttpService) {
+  constructor(private http: HttpService, private router:Router) {
  
 
   }
@@ -70,6 +71,7 @@ export class CreateListComponent implements OnInit {
     console.log(JSON.stringify(payload));
        this.http.createList(payload).subscribe((data)=>{
          console.log(data)
+         this.router.navigate(['/dashboard'])
        })
     
   }

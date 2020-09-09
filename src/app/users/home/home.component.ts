@@ -30,7 +30,9 @@ export class HomeComponent implements OnInit {
   });
   public email;
   onSubmit=()=>{
-    this.spinner.show();
+
+    localStorage.setItem('isLoggedin', 'true'); 
+      this.spinner.show();
     var value = this.loginForm.value;
     this.http.signin(value.email,value.password).subscribe(
       (result)=>{
@@ -55,6 +57,9 @@ export class HomeComponent implements OnInit {
 
   }
   ngOnInit(): void {
+      if (localStorage.getItem('isLoggedin') == 'true') {
+      this.Router.navigate(['dashboard']);
+    }
   }
 
 }

@@ -1,36 +1,37 @@
 <mat-toolbar color="primary" class="mat-elevation-z">
-    <span>
+  <span>
     <mat-icon>post_add</mat-icon> ED-Planner
   </span>
-    <div class="spacer"> </div>
-    <button mat-icon-button [matMenuTriggerFor]="menu">
+  <div class="spacer"> </div>
+  <button mat-icon-button [matMenuTriggerFor]="menu">
     <mat-icon matSuffix>person_search</mat-icon>
   </button>
-    <mat-menu #menu="matMenu" class="menu_items">
-        <h3 mat-subheader style="text-align: center;  height: 12px;">Your friends</h3>
-        <mat-divider></mat-divider>
-        <button mat-menu-item>
+  <mat-menu #menu="matMenu" class="menu_items">
+    <h3 mat-subheader style="text-align: center;  height: 12px;">Your friends</h3>
+    <mat-divider></mat-divider>
+    <button mat-menu-item>
       <mat-icon [ngStyle]="{'color':'green'}">check_circle</mat-icon>
       <span>Karthik</span>
     </button>
-        <button mat-menu-item disabled>
+    <button mat-menu-item disabled>
       <mat-icon [ngStyle]="{'color':'green'}">check_circle</mat-icon>
       <span>Kalyan</span>
-   
+
     </button>
-        <mat-divider></mat-divider>
-        <h3 mat-subheader style="text-align: center;  height: 12px;">You may know</h3>
-        <mat-divider></mat-divider>
-        <button mat-menu-item>
-      <mat-icon >person_add</mat-icon>
+    <mat-divider></mat-divider>
+    <h3 mat-subheader style="text-align: center;  height: 12px;">You may know</h3>
+    <mat-divider></mat-divider>
+    <button mat-menu-item>
+      <mat-icon>person_add</mat-icon>
       <span>Munni</span>
     </button>
-    </mat-menu>
-    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+  </mat-menu>
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
     <mat-icon>more_vert</mat-icon>
   </button>
 
-    <button mat-button [routerLink]="['/user']">Home</button>
-    <button mat-raised-button color="accent" [routerLink]="['/user/signup']">Signup</button>
+  <button mat-button [routerLink]="['/user']" *ngIf="!isLoggedin">Home</button>
+  <button mat-raised-button color="accent" *ngIf="isLoggedin">Hello <span class="uname"> {{uname}}</span></button>
+  <button mat-raised-button color="accent" [routerLink]="['/user/signup']" *ngIf="!isLoggedin">Signup</button>
 
 </mat-toolbar>

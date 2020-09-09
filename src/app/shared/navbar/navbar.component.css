@@ -1,7 +1,11 @@
 .spacer {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
 ::ng-deep .menu_items {
-    width: 190px;
+  width: 190px;
+}
+
+.uname {
+  color: rgb(23, 0, 61);
 }
