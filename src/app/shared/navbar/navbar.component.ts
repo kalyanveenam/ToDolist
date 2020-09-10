@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-public isLoggedin:any=localStorage.getItem('isLoggedin')
+public isLoggedin:string=localStorage.getItem('isLoggedin')
   public uname:any=localStorage.getItem('name')
   constructor( public router: Router) {
    

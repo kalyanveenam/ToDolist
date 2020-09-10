@@ -31,7 +31,9 @@
   </button>
 
   <button mat-button [routerLink]="['/user']" *ngIf="!isLoggedin">Home</button>
-  <button mat-raised-button color="accent" *ngIf="isLoggedin">Hello <span class="uname"> {{uname}}</span></button>
+  <button mat-raised-button color="accent" *ngIf="isLoggedin">
+    <mat-icon>account_circle</mat-icon>Hello <span class="uname"> {{uname}}</span>
+  </button>
   <button mat-raised-button color="accent" [routerLink]="['/user/signup']" *ngIf="!isLoggedin">Signup</button>
 
 </mat-toolbar>
