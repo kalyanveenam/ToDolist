@@ -36,47 +36,47 @@ export class DashboardComponent implements OnInit {
   public userList: any = [];
   public userNotification;
   onlineUsers = [];
-  task: Task = {
-    name: 'Get Tablets',
-    completed: false,
-    color: 'primary',
-    subtasks: [{
-        name: 'Asthaphen',
-        completed: false,
-        color: 'primary'
-      },
-      {
-        name: 'Ascoril',
-        completed: false,
-        color: 'primary'
-      },
-      {
-        name: 'Unicontin',
-        completed: false,
-        color: 'primary'
-      }
-    ]
-  };
+  // task: Task = {
+  //   name: 'Get Tablets',
+  //   completed: false,
+  //   color: 'primary',
+  //   subtasks: [{
+  //       name: 'Asthaphen',
+  //       completed: false,
+  //       color: 'primary'
+  //     },
+  //     {
+  //       name: 'Ascoril',
+  //       completed: false,
+  //       color: 'primary'
+  //     },
+  //     {
+  //       name: 'Unicontin',
+  //       completed: false,
+  //       color: 'primary'
+  //     }
+  //   ]
+  // };
   allComplete: boolean = false;
 
-  updateAllComplete() {
-    this.allComplete = this.task.subtasks != null && this.task.subtasks.every(t => t.completed);
-  }
+  // updateAllComplete() {
+  //   this.allComplete = this.task.subtasks != null && this.task.subtasks.every(t => t.completed);
+  // }
 
-  someComplete(): boolean {
-    if (this.task.subtasks == null) {
-      return false;
-    }
-    return this.task.subtasks.filter(t => t.completed).length > 0 && !this.allComplete;
-  }
+  // someComplete(): boolean {
+  //   if (this.task.subtasks == null) {
+  //     return false;
+  //   }
+  //   return this.task.subtasks.filter(t => t.completed).length > 0 && !this.allComplete;
+  // }
 
-  setAll(completed: boolean) {
-    this.allComplete = completed;
-    if (this.task.subtasks == null) {
-      return;
-    }
-    this.task.subtasks.forEach(t => t.completed = completed);
-  }
+  // setAll(completed: boolean) {
+  //   this.allComplete = completed;
+  //   if (this.task.subtasks == null) {
+  //     return;
+  //   }
+  //   this.task.subtasks.forEach(t => t.completed = completed);
+  // }
 
   panelOpenState = false;
   constructor(public SocketService: SocketService, private _snackBar: MatSnackBar, private http: HttpService, private spinner: NgxSpinnerService) {
@@ -104,7 +104,7 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  selected = 'option2';
+  selected = '';
   toggleNavbar() {
     console.log('toggled' + this.isMenuOpened);
     this.isMenuOpened = !this.isMenuOpened;
@@ -156,8 +156,9 @@ this.lists=(response["data"])
   public getTasks(list){
 return list.tasks;
   }
+  
   public getSubTasks(task){
-    console.log(task)
+   
     return task.subtask;
   }
 }
