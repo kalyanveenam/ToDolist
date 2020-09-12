@@ -191,25 +191,12 @@ return list.tasks;
       var change = {};
       var splitted = i.toString().split('_');
       console.log(splitted);
-      if(splitted[0]=='task')
-      {
-      change['type']='task';
+      change['type']=splitted[0];
       change['list_id']=splitted[1];
+      if(splitted[2])
       change['task_id']=splitted[2];
-      }
-      
-      else if(splitted[0]=='list')
-      {
-      change['type']='list';
-      change['list_id']=splitted[1];
-      }
-      else if(splitted[0]=='subtask')
-      {
-      change['type']='subtask';
-      change['list_id']=splitted[1];
-      change['task_id']=splitted[2];
+      if(splitted[3])
       change['subtask_id']=splitted[3];
-      }
       change['value']= dirtyValues[i];
       changes.push(change);
     }
