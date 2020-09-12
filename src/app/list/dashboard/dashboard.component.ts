@@ -85,6 +85,7 @@ export class DashboardComponent implements OnInit {
   }
  public lists;
  public tasks;
+ public isEdit =false;
  public allTasks=[];
   isMenuOpened: boolean = true;
   activeOpenState = true;
@@ -103,7 +104,9 @@ export class DashboardComponent implements OnInit {
       this.offlineUser();
     })
   }
-
+public editView(){
+  this.isEdit=true;
+}
   selected = '';
   toggleNavbar() {
     console.log('toggled' + this.isMenuOpened);
@@ -144,12 +147,14 @@ export class DashboardComponent implements OnInit {
   public getLists() {
     this.http.getLists().subscribe((response) => {
 this.lists=(response["data"])
+console.log('lists are '+this.lists);
    for (let i=0;i<this.lists.length;i++){
   console.log(response['data'])
     this.tasks=   response["data"][i].tasks;
 
  this.allTasks.push(this.tasks)
    }
+
  //   console.log(this.tasks)
     });
   }
@@ -161,4 +166,56 @@ return list.tasks;
    
     return task.subtask;
   }
+
+  public update(form)
+  {
+    console.log(form);
+    let dirtyValues = {};
+
+    Object.keys(form.controls)
+        .forEach(key => {
+            const currentControl = form.controls[key];
+
+            if (currentControl.dirty) {
+                if (currentControl.controls)
+                    dirtyValues[key] = this.update(currentControl);
+                else
+                    dirtyValues[key] = currentControl.value;
+            }
+        });
+
+    console.log(dirtyValues);
+
+    var changes = [];
+    for(var i in dirtyValues){
+      var change = {};
+      var splitted = i.toString().split('_');
+      console.log(splitted);
+      if(splitted[0]=='task')
+      {
+      change['type']='task';
+      change['list_id']=splitted[1];
+      change['task_id']=splitted[2];
+      }
+      
+      else if(splitted[0]=='list')
+      {
+      change['type']='list';
+      change['list_id']=splitted[1];
+      }
+      else if(splitted[0]=='subtask')
+      {
+      change['type']='subtask';
+      change['list_id']=splitted[1];
+      change['task_id']=splitted[2];
+      change['subtask_id']=splitted[3];
+      }
+      change['value']= dirtyValues[i];
+      changes.push(change);
+    }
+    console.log('changes are '+JSON.stringify(changes));
+
+  }
+
+  
 }

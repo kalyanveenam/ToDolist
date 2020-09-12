@@ -1,84 +1,121 @@
 <mat-sidenav-container>
-  <mat-sidenav mode="side" #sidenav id="sidenav" [class.menu-open]="isMenuOpened" [class.menu-open]="!isMenuOpened"
-    opened>
-    <button style="width: 100%; text-align: left" mat-button color="accent">
+    <mat-sidenav mode="side" #sidenav id="sidenav" [class.menu-open]="isMenuOpened" [class.menu-open]="!isMenuOpened" opened>
+        <button style="width: 100%; text-align: left" mat-button color="accent">
       My list</button><br />
-    <mat-divider></mat-divider>
-    <button style="height: 8vh; width: 100%; text-align: left" mat-button color="accent">
+        <mat-divider></mat-divider>
+        <button style="height: 8vh; width: 100%; text-align: left" mat-button color="accent">
       Friends List</button><br />
-    <mat-divider></mat-divider>
-    <button style="height: 8vh; width: 100%; text-align: left" mat-button color="accent">
+        <mat-divider></mat-divider>
+        <button style="height: 8vh; width: 100%; text-align: left" mat-button color="accent">
       Add friends</button><br />
-    <mat-divider></mat-divider>
-    <button style="height: 8vh; width: 100%; text-align: left" mat-button color="accent">
+        <mat-divider></mat-divider>
+        <button style="height: 8vh; width: 100%; text-align: left" mat-button color="accent">
       Home
     </button>
-    <mat-accordion>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header style="background: #8a2ce2; color: #ffc107">
-          <mat-panel-title style="color: #ffc107"> Status </mat-panel-title>
-        </mat-expansion-panel-header>
-        <button mat-button color="black" style="width: 100%; text-align: left">
+        <mat-accordion>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header style="background: #8a2ce2; color: #ffc107">
+                    <mat-panel-title style="color: #ffc107"> Status </mat-panel-title>
+                </mat-expansion-panel-header>
+                <button mat-button color="black" style="width: 100%; text-align: left">
           Open</button><br />
-        <button mat-button color="black" style="width: 100%; text-align: left">
+                <button mat-button color="black" style="width: 100%; text-align: left">
           Done</button><br />
-        <button mat-button color="black" style="width: 100%; text-align: left">
+                <button mat-button color="black" style="width: 100%; text-align: left">
           Pending
         </button>
-      </mat-expansion-panel>
-    </mat-accordion>
-    <mat-divider></mat-divider>
-    <br />
-    <br />
+            </mat-expansion-panel>
+        </mat-accordion>
+        <mat-divider></mat-divider>
+        <br />
+        <br />
 
 
-  </mat-sidenav>
-  <mat-sidenav-content class="sc">
+    </mat-sidenav>
+    <mat-sidenav-content class="sc">
 
 
-    <mat-accordion>
-      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="online-users">
-        <mat-expansion-panel-header>
-          <mat-panel-title> <span class="dot">.</span> Online users </mat-panel-title>
-        </mat-expansion-panel-header>
+        <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="online-users">
+                <mat-expansion-panel-header>
+                    <mat-panel-title> <span class="dot">.</span> Online users </mat-panel-title>
+                </mat-expansion-panel-header>
 
-        <mat-card class="example-card">
-          <mat-list role="list" fxFlex="50" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let users of userList">
-            <mat-list-item role="listitem">{{users.name.name}}<br /></mat-list-item>
+                <mat-card class="example-card">
+                    <mat-list role="list" fxFlex="50" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let users of userList">
+                        <mat-list-item role="listitem">{{users.name.name}}<br /></mat-list-item>
 
-          </mat-list>
+                    </mat-list>
 
-        </mat-card>
-      </mat-expansion-panel>
-    </mat-accordion>
-    <br />
-    <br />
-    <button mat-icon-button [routerLink]="['/list/create']">
+                </mat-card>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <br />
+        <br />
+        <button mat-icon-button [routerLink]="['/list/create']">
       <mat-icon matSuffix>add_circle_outline</mat-icon>Create
     </button>
 
 
 
 
-    <mat-accordion>
-      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-        <mat-expansion-panel-header>
-          <mat-panel-title> Completed </mat-panel-title>
-          <mat-panel-description>
-            Completed lists
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-      </mat-expansion-panel>
-    </mat-accordion>
-    <br />
-    <br />
-    <mat-accordion>
-      <mat-expansion-panel [expanded]="true" (opened)="activeOpenState = true" (closed)="activeOpenState = false">
-        <mat-expansion-panel-header>
-          <mat-panel-title> Active Lists </mat-panel-title>
-          <mat-panel-description> Your Current lists </mat-panel-description>
-        </mat-expansion-panel-header>
-        <mat-card class="active-cards" *ngFor="let list of lists">
+        <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title> Completed </mat-panel-title>
+                    <mat-panel-description>
+                        Completed lists
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <br />
+        <br />
+        <mat-accordion>
+            <mat-expansion-panel [expanded]="true" (opened)="activeOpenState = true" (closed)="activeOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title> Active Lists </mat-panel-title>
+                    <mat-panel-description> Your Current lists </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <form ngForm #data=ngForm (submit)="update(data)">
+                    <mat-expansion-panel *ngFor="let list of lists;index as listid;">
+                        <!-- <mat-card >}</mat-card> -->
+
+                        <mat-expansion-panel-header>
+                            <mat-panel-title *ngIf="!isEdit">{{list.title}}</mat-panel-title>
+                            <input ngModel="{{list.title}}" name="list_{{listid}}" matInput *ngIf="isEdit" />
+                            <button *ngIf="!isEdit" (click)="editView()">
+                        <mat-icon >edit</mat-icon>
+                      </button>
+                        </mat-expansion-panel-header>
+                        <mat-expansion-panel *ngFor="let task of getTasks(list);index as taskid;">
+                            <mat-expansion-panel-header>
+                                <mat-checkbox *ngIf="!isEdit" class="task-checkbox">{{task.title}}</mat-checkbox>
+                                <input name="task_{{listid}}_{{taskid}}" matInput *ngIf="isEdit" ngModel="{{task.title}}" />
+                            </mat-expansion-panel-header>
+                            <mat-expansion-panel-content>
+                                <div *ngIf="!isEdit">
+                                    <mat-checkbox *ngFor="let subtask of getSubTasks(task);index as subtaskid;">{{subtask.description}}</mat-checkbox>
+                                </div>
+                                <div *ngIf="isEdit">
+                                    <input matInput ngModel name="subtask_{{listid}}_{{taskid}}_{{subtaskid}}" *ngFor="let subtask of getSubTasks(task);index as subtaskid;" ngModel="{{subtask.description}}" />
+                                </div>
+                            </mat-expansion-panel-content>
+
+                        </mat-expansion-panel>
+                        <br /><br />
+                        <div style="text-align: center;">
+                            <button *ngIf="isEdit" mat-raised-button color="accent" type="submit">Save</button>
+                        </div>
+
+                    </mat-expansion-panel>
+                </form>
+            </mat-expansion-panel>
+
+
+
+            <!-- <mat-card class="active-cards" *ngFor="let list of lists">
           <mat-card-header class="list-header">
 
             <mat-card-title class="list-title">
@@ -94,17 +131,14 @@
                 <mat-list-option *ngFor="let shoe of getSubTasks(tasks)">
                   <span class="active-subtasks">{{shoe.description}}</span>
                 </mat-list-option>
-              </mat-selection-list>
+              </mat-selection-list> -->
 
-              <!-- <p>
+            <!-- <p>
                 list marked as Completed: {{shoes.selectedOptions.selected.length}}
               </p> -->
 
-            </div>
-          </mat-card-content>
-        </mat-card>
-      </mat-expansion-panel>
-    </mat-accordion> <br />
 
-  </mat-sidenav-content>
+        </mat-accordion> <br />
+
+    </mat-sidenav-content>
 </mat-sidenav-container>
