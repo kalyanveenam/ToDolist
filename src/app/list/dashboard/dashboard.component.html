@@ -67,6 +67,33 @@
                         Completed lists
                     </mat-panel-description>
                 </mat-expansion-panel-header>
+                <mat-expansion-panel *ngFor="let list of lists;index as listid;">
+                    <!-- <mat-card >}</mat-card> -->
+
+                    <mat-expansion-panel-header *ngIf="list.isCompleted">
+                        <mat-panel-title *ngIf="!isEdit">{{list.title}}</mat-panel-title>
+                        <mat-checkbox *ngIf="!isEdit" style="right: 5dp;" [checked]= "list.isCompleted" (change)="updateCheckbox($event,listid,'','','list')"></mat-checkbox>
+                        <button><mat-icon *ngIf="!isEdit" style="right: 5dp;"  (click)="delete(listid,'','','list')">delete</mat-icon></button>
+                    
+              
+                    </mat-expansion-panel-header>
+                    <mat-expansion-panel *ngFor="let task of getTasks(list);index as taskid;">
+                        <mat-expansion-panel-header>
+                                                     <button><mat-icon *ngIf="!isEdit" style="right: 5dp;"  (click)="delete(listid,taskid,'','task')">delete</mat-icon></button>
+                            <button><mat-icon *ngIf="!isEdit" style="right: 5dp;"  (change)="delete(listid,taskid,'','task')">delete</mat-icon></button>
+                        </mat-expansion-panel-header>
+                        <mat-expansion-panel-content>
+                            <div *ngIf="!isEdit">
+                                <mat-checkbox [checked]= "subtask.isCompleted" (change)="updateCheckbox($event,listid,taskid,subtaskid,'subtask')" *ngFor="let subtask of getSubTasks(task);index as subtaskid;">{{subtask.description}}</mat-checkbox>
+                                <button><mat-icon style="right: 5dp;"  (click)="delete(listid,taskid,subtaskid,'subtask')">delete</mat-icon></button>
+                            </div>
+                        </mat-expansion-panel-content>
+
+                    </mat-expansion-panel>
+                    <br /><br />
+                    
+
+                </mat-expansion-panel>
             </mat-expansion-panel>
         </mat-accordion>
         <br />
@@ -82,21 +109,25 @@
                     <mat-expansion-panel *ngFor="let list of lists;index as listid;">
                         <!-- <mat-card >}</mat-card> -->
 
-                        <mat-expansion-panel-header>
+                        <mat-expansion-panel-header *ngIf="!list.isCompleted">
                             <mat-panel-title *ngIf="!isEdit">{{list.title}}</mat-panel-title>
+                            <mat-checkbox *ngIf="!isEdit" style="right: 5dp;" [checked]= "list.isCompleted" (change)="updateCheckbox($event,listid,'','','list')"></mat-checkbox>
+                            <button><mat-icon *ngIf="!isEdit" style="right: 5dp;"  (click)="delete(listid,'','','list')">delete</mat-icon></button>
                             <input ngModel="{{list.title}}" name="list_{{listid}}" matInput *ngIf="isEdit" />
+
                             <button *ngIf="!isEdit" (click)="editView()">
                         <mat-icon >edit</mat-icon>
                       </button>
                         </mat-expansion-panel-header>
                         <mat-expansion-panel *ngFor="let task of getTasks(list);index as taskid;">
                             <mat-expansion-panel-header>
-                                <mat-checkbox *ngIf="!isEdit" class="task-checkbox">{{task.title}}</mat-checkbox>
+                                <mat-checkbox *ngIf="!isEdit" class="task-checkbox" [checked]= "task.isCompleted" (change)="updateCheckbox($event,listid,taskid,'','task')">{{task.title}}</mat-checkbox>
+                                <button><mat-icon *ngIf="!isEdit" style="right: 5dp;"  (click)="delete(listid,taskid,'','task')">delete</mat-icon></button>
                                 <input name="task_{{listid}}_{{taskid}}" matInput *ngIf="isEdit" ngModel="{{task.title}}" />
                             </mat-expansion-panel-header>
                             <mat-expansion-panel-content>
                                 <div *ngIf="!isEdit">
-                                    <mat-checkbox *ngFor="let subtask of getSubTasks(task);index as subtaskid;">{{subtask.description}}</mat-checkbox>
+                                    <mat-checkbox [checked]= "subtask.isCompleted" (change)="updateCheckbox($event,listid,taskid,subtaskid,'subtask')" *ngFor="let subtask of getSubTasks(task);index as subtaskid;">{{subtask.description}}</mat-checkbox>
                                 </div>
                                 <div *ngIf="isEdit">
                                     <input matInput ngModel name="subtask_{{listid}}_{{taskid}}_{{subtaskid}}" *ngFor="let subtask of getSubTasks(task);index as subtaskid;" ngModel="{{subtask.description}}" />
@@ -106,7 +137,7 @@
                         </mat-expansion-panel>
                         <br /><br />
                         <div style="text-align: center;">
-                            <button *ngIf="isEdit" mat-raised-button color="accent" type="submit">Save</button>
+                            <button *ngIf="isEdit" mat-raised-button color="accent" type="submit" >Save</button>
                         </div>
 
                     </mat-expansion-panel>

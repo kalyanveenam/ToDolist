@@ -48,7 +48,6 @@ export class HttpService {
     return this._http.get(this.baseUrl + '/get/list', { headers: header });
   }
     public createList(payload) {
-      console.log('ikkadiki ra'+JSON.stringify(payload))
       let header = {};
     header['Authorization'] = localStorage.getItem('authToken');
  header['Content-Type'] = 'application/json';
@@ -59,4 +58,16 @@ export class HttpService {
       { headers: header }
     );
   }
+  public updateList(payload){
+    var header = {};
+    header['Authorization'] = localStorage.getItem('authToken');
+    header['Content-type'] = 'application/json';
+    return this._http.put(
+      this.baseUrl + '/update/list',
+     payload,
+      { headers:header }
+    );
+  }
+  
 }
+

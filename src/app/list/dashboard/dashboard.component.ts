@@ -198,11 +198,64 @@ return list.tasks;
       if(splitted[3])
       change['subtask_id']=splitted[3];
       change['value']= dirtyValues[i];
+      change['field']='title';
       changes.push(change);
     }
-    console.log('changes are '+JSON.stringify(changes));
 
+    console.log('changes are '+JSON.stringify(changes));
+this.http.updateList(changes).subscribe((result)=>{
+  console.log(result);
+  this.getLists();
+  this.isEdit=false;
+})
   }
+  public updateCheckbox(event,listid,taskid,subtaskid,type){
+    console.log(event.checked+'d'+listid);
+    var changes = [];
+    var change = {};
+    change['type']=type;
+    change['list_id']=listid;
+    if(type='subtask')
+    {
+      change['task_id']=taskid;
+      change['subtask_id']=subtaskid;
+    }
+    if(type='task')
+    {
+      change['task_id']=taskid;
+    }
+    change['field']='completed';
+    change['value']=event.checked;
+  changes.push(change);
+  console.log(JSON.stringify(changes));
+  this.http.updateList(changes).subscribe((result)=>{
+    console.log(result);
+    this.getLists();
+  })  
+}
+public delete(listid,taskid,subtaskid,type){
+  var changes = [];
+  var change = {};
+  change['type']=type;
+  change['list_id']=listid;
+  if(type='subtask')
+  {
+    change['task_id']=taskid;
+    change['subtask_id']=subtaskid;
+  }
+  if(type='task')
+  {
+    change['task_id']=taskid;
+  }
+  change['field']='delete';
+  change['value']='delete';
+changes.push(change);
+console.log(JSON.stringify(changes));
+this.http.updateList(changes).subscribe((result)=>{
+  console.log(result);
+  this.getLists();
+})  
+}
 
   
 }
