@@ -92,7 +92,7 @@ export class DashboardComponent implements OnInit {
 
       this.userList = [];
       for (var x in user) {
-        if (!this.isUserExists(this.userList, user[x]['userId']))
+        if (!this.isUserExists(this.userList, user[x]['userId']) && user[x]['userId']!=localStorage.getItem('id'))
           this.userList.push(user[x]);
       }
       console.log('hi ' + JSON.stringify(this.userList));
@@ -103,6 +103,7 @@ export class DashboardComponent implements OnInit {
       return false;
     else {
       for (var x in userList) {
+        console.log('uid is '+userList[x]['userId']+' and '+localStorage.getItem('id'));
         if (userList[x]['userId'] == id)
           return true;
       }

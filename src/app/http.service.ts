@@ -114,6 +114,11 @@ export class HttpService {
       headers: header
     });
   }
+
+  public forgotPassword(email) {
+    const endpoint = this.baseUrl + '/forgotPassword';
+    return this._http.post(endpoint, { email: email });
+  }
   public getFriends(){
     var header = {};
     header['Authorization'] = localStorage.getItem('authToken');

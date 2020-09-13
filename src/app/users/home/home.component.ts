@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
   public isValidCredentials: boolean = false;
   public userNotFound;
   public isFp:boolean;
-  constructor(private http: HttpService, private Router: Router, private spinner: NgxSpinnerService) {
+  constructor(private http: HttpService, private router: Router, private spinner: NgxSpinnerService) {
     this.isFp=false;
   }
   get emailControl() {
@@ -62,7 +62,7 @@ if(!this.isFp)
         console.log(result['data']['token'])
 
         this.spinner.hide();
-        this.Router.navigate(['/list'])
+        this.router.navigate(['/list'])
 
       },
       (error) => {
@@ -76,12 +76,24 @@ if(!this.isFp)
 
   }
   else{
-    console.log(this.loginForm.value.email);
+    this.http.forgotPassword(this.loginForm.value.email).subscribe(
+      (response) => {
+        if ((response['status'] = '200')) {
+          this.spinner.hide();
+
+          this.router.navigate(['user']);
+          this.isFp = false;
+        }
+      },
+      (error) => {
+        this.spinner.hide();
+      }
+    );
   }
 }
   ngOnInit(): void {
     if (localStorage.getItem('isLoggedin') == 'true') {
-      this.Router.navigate(['dashboard']);
+      this.router.navigate(['dashboard']);
     }
     this.isFp=false;
   }
