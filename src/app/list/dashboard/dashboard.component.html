@@ -1,8 +1,23 @@
 <app-navbar [uname]="uname" [userlist]="userList"></app-navbar>
 <mat-sidenav-container>
     <mat-sidenav mode="side" #sidenav id="sidenav" [class.menu-open]="isMenuOpened" [class.menu-open]="!isMenuOpened" opened>
+        <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="online-users">
+                <mat-expansion-panel-header>
+                    <mat-panel-title> <span class="dot">.</span> Online users </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <mat-card class="example-card">
+                    <mat-list role="list" fxFlex="50" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let users of userList">
+                        <mat-list-item role="listitem">{{users.name.name}}<br /></mat-list-item>
+
+                    </mat-list>
+
+                </mat-card>
+            </mat-expansion-panel>
+        </mat-accordion>
         <br/>
-        <div class="list-group" *ngFor="let friend of myFriends">
+        <div class="list-group" *ngFor="let friend of myFriends" >
             <a href="#" class="list-group-item list-group-item-action active">
               My Friends
             </a>
@@ -27,21 +42,6 @@
     <mat-sidenav-content class="sc">
 
 
-        <mat-accordion>
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="online-users">
-                <mat-expansion-panel-header>
-                    <mat-panel-title> <span class="dot">.</span> Online users </mat-panel-title>
-                </mat-expansion-panel-header>
-
-                <mat-card class="example-card">
-                    <mat-list role="list" fxFlex="50" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let users of userList">
-                        <mat-list-item role="listitem">{{users.name.name}}<br /></mat-list-item>
-
-                    </mat-list>
-
-                </mat-card>
-            </mat-expansion-panel>
-        </mat-accordion>
         <br />
         <br />
         <button mat-icon-button [routerLink]="['/list/create']">

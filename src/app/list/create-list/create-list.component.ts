@@ -24,15 +24,15 @@ export class CreateListComponent implements OnInit {
     this.mytasks.push(this.mytasks.length);
   }
   public addSubTask(task) {
-    var found = false;
-    for (var subtask in this.subtasks) {
+    let found = false;
+    for (let subtask in this.subtasks) {
       if (this.subtasks[subtask]['task'] == task) {
         this.subtasks[subtask]['stid'].push(this.subtasks[subtask]['stid'].length);
         found = true;
       }
     }
     if (!found) {
-      var newSubTask = {};
+      let newSubTask = {};
       newSubTask['task'] = task;
       newSubTask['stid'] = [0];
       this.subtasks.push(newSubTask);
@@ -40,7 +40,7 @@ export class CreateListComponent implements OnInit {
   }
   
   public getSubtasks(task) {
-    for (var subtask in this.subtasks) {
+    for (let subtask in this.subtasks) {
       if (this.subtasks[subtask]['task'] == task) {
         return this.subtasks[subtask]['stid'];
       }
@@ -50,17 +50,17 @@ export class CreateListComponent implements OnInit {
 
   public createList(data) {
     console.log(data.value);
-    var payload = {};
+    let payload = {};
     payload['title'] = data.value['title'];
-    var tasks = [];
-    for (var i in this.mytasks) {
-      var task = {};
+    let tasks = [];
+    for (let i in this.mytasks) {
+      let task = {};
       task['title'] = data.value['task_title_' + i];
       task['description'] = data.value['task_desc_' + i];
-      var subtasks = [];
-      var subtasklength = this.getSubtaskLengthByTask(i);
-      for (var j = 0; j < subtasklength; j++) {
-        var subtask = {};
+      let subtasks = [];
+      let subtasklength = this.getSubtaskLengthByTask(i);
+      for (let j = 0; j < subtasklength; j++) {
+        let subtask = {};
         subtask['description'] = data.value['subtask_' + i + "_" + j];
         subtasks.push(subtask);
       }
@@ -83,7 +83,7 @@ export class CreateListComponent implements OnInit {
   }
 
   public getSubtaskLengthByTask(task) {
-    for (var subtask in this.subtasks) {
+    for (let subtask in this.subtasks) {
       if (this.subtasks[subtask]['task'] == task) {
         return this.subtasks[subtask]['stid'].length;
       }

@@ -13,7 +13,7 @@ export class HttpService {
   public baseUrl = this.prod;
   constructor(public _http: HttpClient) {}
   public logout() {
-    var header = {};
+    let header = {};
     header['Authorization'] = localStorage.getItem('token');
     header['Content-Type'] = 'application/json';
     return this._http.post(
@@ -52,7 +52,7 @@ export class HttpService {
   }
   public getLists() {
 
-    var header = {};
+    let header = {};
     header['Authorization'] = localStorage.getItem('authToken');
 
     return this._http.get(this.baseUrl + '/get/list', {
@@ -61,7 +61,7 @@ export class HttpService {
   }
   public getListsById(id) {
 
-    var header = {};
+    let header = {};
     header['Authorization'] = localStorage.getItem('authToken');
 
     return this._http.get(this.baseUrl + '/get/listbyid?id='+id, {
@@ -83,7 +83,7 @@ export class HttpService {
     );
   }
   public updateList(payload) {
-    var header = {};
+    let header = {};
     header['Authorization'] = localStorage.getItem('authToken');
     header['Content-type'] = 'application/json';
     return this._http.put(
@@ -94,7 +94,7 @@ export class HttpService {
     );
   }
   public sendRequest(to, recieverName) {
-    var header = {};
+    let header = {};
     header['Authorization'] = localStorage.getItem('authToken');
     header['Content-type'] = 'application/json';
     return this._http.post(
@@ -107,7 +107,7 @@ export class HttpService {
     );
   }
   public getRequestStatus(){
-    var header = {};
+    let header = {};
     header['Authorization'] = localStorage.getItem('authToken');
     header['Content-type'] = 'application/json';
     return this._http.get(this.baseUrl + '/list/friends?status=pending', {
@@ -115,7 +115,7 @@ export class HttpService {
     });
   }
   public getFriends(){
-    var header = {};
+    let header = {};
     header['Authorization'] = localStorage.getItem('authToken');
     header['Content-type'] = 'application/json';
     return this._http.get(this.baseUrl + '/list/friends?status=accept', {
@@ -123,7 +123,7 @@ export class HttpService {
     });
   }
   public updateRequest(userId){
-    var header = {};
+    let header = {};
     header['Authorization'] = localStorage.getItem('authToken');
     header['Content-type'] = 'application/json';
     return this._http.put(
