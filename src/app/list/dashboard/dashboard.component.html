@@ -1,48 +1,30 @@
 <app-navbar [uname]="uname" [userlist]="userList"></app-navbar>
 <mat-sidenav-container>
     <mat-sidenav mode="side" #sidenav id="sidenav" [class.menu-open]="isMenuOpened" [class.menu-open]="!isMenuOpened" opened>
-      <br/>
+        <br/>
         <div class="list-group" *ngFor="let friend of myFriends">
             <a href="#" class="list-group-item list-group-item-action active">
               My Friends
             </a>
             <a href="#" class="list-group-item list-group-item-action" (click)="getFriendsListById(friend.fromUser)">{{friend.senderName}}</a>
 
-          </div>
-        
+        </div>
 
-          <div class="list-group" *ngFor="let requests of pendingRequests">
+
+        <div class="list-group" *ngFor="let requests of pendingRequests">
             <a href="#" class="list-group-item list-group-item-action active">
               Friend Requests
             </a>
             <a href="#" class="list-group-item list-group-item-action">{{requests.senderName}}</a>
-          </div>
-        
+        </div>
+
         <mat-divider></mat-divider>
         <br />
         <br />
 
 
     </mat-sidenav>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-    <mat-sidenav-content class="sidenav-content">
+    <mat-sidenav-content class="sc">
 
 
         <mat-accordion>
@@ -69,7 +51,7 @@
 
 
 
-        <mat-accordion class="completed-lists">
+        <mat-accordion>
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header>
                     <mat-panel-title> Completed </mat-panel-title>
@@ -77,33 +59,6 @@
                         Completed lists
                     </mat-panel-description>
                 </mat-expansion-panel-header>
-                <mat-expansion-panel *ngFor="let list of lists;index as listid;">
-                    <!-- <mat-card >}</mat-card> -->
-
-                    <mat-expansion-panel-header *ngIf="list.isCompleted">
-                        <mat-panel-title *ngIf="!isEdit">{{list.title}}</mat-panel-title>
-                        <mat-checkbox class="checkbox-com" *ngIf="!isEdit" style="right: 5dp;" [checked]= "list.isCompleted" (change)="updateCheckbox($event,listid,'','','list')"></mat-checkbox>
-                        <button class="del-btn"><mat-icon *ngIf="!isEdit" style="right: 5dp;"  (click)="delete(listid,'','','list')">delete</mat-icon></button>
-                    
-              
-                    </mat-expansion-panel-header>
-                    <mat-expansion-panel *ngFor="let task of getTasks(list);index as taskid;">
-                        <mat-expansion-panel-header>
-                                                     <button><mat-icon *ngIf="!isEdit" style="right: 5dp;"  (click)="delete(listid,taskid,'','task')">delete</mat-icon></button>
-                            <button><mat-icon *ngIf="!isEdit" style="right: 5dp;"  (change)="delete(listid,taskid,'','task')">delete</mat-icon></button>
-                        </mat-expansion-panel-header>
-                        <mat-expansion-panel-content>
-                            <div *ngIf="!isEdit">
-                                <mat-checkbox [checked]= "subtask.isCompleted"  (change)="updateCheckbox($event,listid,taskid,subtaskid,'subtask')" *ngFor="let subtask of getSubTasks(task);index as subtaskid;">{{subtask.description}}</mat-checkbox>
-                                <button><mat-icon style="right: 5dp;"  (click)="delete(listid,taskid,subtaskid,'subtask')">delete</mat-icon></button>
-                            </div>
-                        </mat-expansion-panel-content>
-
-                    </mat-expansion-panel>
-                    <br /><br />
-                    
-
-                </mat-expansion-panel>
             </mat-expansion-panel>
         </mat-accordion>
         <br />
@@ -119,25 +74,21 @@
                     <mat-expansion-panel *ngFor="let list of lists;index as listid;">
                         <!-- <mat-card >}</mat-card> -->
 
-                        <mat-expansion-panel-header  *ngIf="!list.isCompleted">
-                            <mat-panel-title class="list-tit" *ngIf="!isEdit">{{list.title}}</mat-panel-title>
-                            <mat-checkbox class="checkbox-com" *ngIf="!isEdit" style="right: 5vw;" [checked]= "list.isCompleted" (change)="updateCheckbox($event,listid,'','','list')"></mat-checkbox>
-                            <button class="del-btn"><mat-icon *ngIf="!isEdit" (click)="delete(listid,'','','list')">delete_outline</mat-icon></button>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title *ngIf="!isEdit">{{list.title}}</mat-panel-title>
                             <input ngModel="{{list.title}}" name="list_{{listid}}" matInput *ngIf="isEdit" />
-
-                            <button *ngIf="!isEdit" (click)="editView()" class="edit-btn">
+                            <button *ngIf="!isEdit" (click)="editView()">
                         <mat-icon >edit</mat-icon>
                       </button>
                         </mat-expansion-panel-header>
                         <mat-expansion-panel *ngFor="let task of getTasks(list);index as taskid;">
                             <mat-expansion-panel-header>
-                                <mat-checkbox *ngIf="!isEdit" class="task-checkbox" [checked]= "task.isCompleted" (change)="updateCheckbox($event,listid,taskid,'','task')">{{task.title}}</mat-checkbox>
-                                <button class="del-st-btn"><mat-icon *ngIf="!isEdit" style="right: 5dp;"  (click)="delete(listid,taskid,'','task')">delete</mat-icon></button>
+                                <mat-checkbox *ngIf="!isEdit" class="task-checkbox">{{task.title}}</mat-checkbox>
                                 <input name="task_{{listid}}_{{taskid}}" matInput *ngIf="isEdit" ngModel="{{task.title}}" />
                             </mat-expansion-panel-header>
                             <mat-expansion-panel-content>
                                 <div *ngIf="!isEdit">
-                                    <mat-checkbox [checked]= "subtask.isCompleted" (change)="updateCheckbox($event,listid,taskid,subtaskid,'subtask')" *ngFor="let subtask of getSubTasks(task);index as subtaskid;">{{subtask.description}}</mat-checkbox>
+                                    <mat-checkbox (change)="updateCheckbox($event,listid,taskid,subtaskid,'subtask')" *ngFor="let subtask of getSubTasks(task);index as subtaskid;">{{subtask.description}}</mat-checkbox>
                                 </div>
                                 <div *ngIf="isEdit">
                                     <input matInput ngModel name="subtask_{{listid}}_{{taskid}}_{{subtaskid}}" *ngFor="let subtask of getSubTasks(task);index as subtaskid;" ngModel="{{subtask.description}}" />
@@ -147,7 +98,7 @@
                         </mat-expansion-panel>
                         <br /><br />
                         <div style="text-align: center;">
-                            <button *ngIf="isEdit" mat-raised-button color="accent" type="submit" >Save</button>
+                            <button *ngIf="isEdit" mat-raised-button color="accent" type="submit">Save</button>
                         </div>
 
                     </mat-expansion-panel>

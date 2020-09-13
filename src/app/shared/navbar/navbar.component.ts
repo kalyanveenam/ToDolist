@@ -11,17 +11,23 @@ import { DialogComponent } from '../dialog/dialog.component';
 export class NavbarComponent implements OnInit {
   hidden = false;
 
-  @Input() uname:any;
-  @Input() userlist:any;
-public isLoggedin:string=localStorage.getItem('isLoggedin')
+  @Input() uname: any;
+  @Input() userlist: any;
+  public isLoggedin;
   //public uname:any=localStorage.getItem('name')
 
   public isSent:any=localStorage.getItem('isSent')
   constructor( public router: Router, public Http: HttpService,public dialog: MatDialog) {
-  
+    this.isLoggedin = (localStorage.getItem('isLoggedin') == "true")
   }
   ngOnInit(): void {
-  
+    this.isLoggedin = (localStorage.getItem('isLoggedin') == "true")
+  }
+  public lout() {
+    this.isLoggedin = false;
+    this.router.navigate(['/user']);
+    localStorage.clear();
+
   }
   isCompleted(){
     return false;

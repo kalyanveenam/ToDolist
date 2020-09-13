@@ -1,37 +1,43 @@
 <mat-toolbar color="primary" class="mat-elevation-z">
-  <span>
+    <span>
     <mat-icon>post_add</mat-icon> ED-Planner
   </span>
-  <div class="spacer"> </div>
-  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <div class="spacer"> </div>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
     <!-- <mat-icon matSuffix  matBadge="15" class="notification-list" matBadgeColor="accent">notifications</mat-icon>   -->
-    <mat-icon matSuffix  matBadge="15" class="user-list" matBadgeColor="accent">person_search</mat-icon>
+    <mat-icon matSuffix matBadge="15" class="user-list" matBadgeColor="accent">person_search</mat-icon>
   </button>
 
-  <mat-menu #menu="matMenu" class="menu_items">
-    <h3 mat-subheader style="text-align: center;  height: 12px;">Your friends</h3>
-    <mat-divider></mat-divider>
-    <button mat-menu-item>
+    <mat-menu #menu="matMenu" class="menu_items">
+        <h3 mat-subheader style="text-align: center;  height: 12px;">Your friends</h3>
+        <mat-divider></mat-divider>
+        <button mat-menu-item>
       <mat-icon [ngStyle]="{'color':'green'}">stop_circle</mat-icon>
       <span>Karthik</span>
     </button>
-    <mat-divider></mat-divider>
-    <h3 mat-subheader style="text-align: center;  height: 12px;">You may know</h3>
-    <mat-divider></mat-divider>
-    <button mat-menu-item *ngFor="let persons of userlist"  (click)="sendFriendRequest(persons.name.userId,persons.name.name)">
+        <mat-divider></mat-divider>
+        <h3 mat-subheader style="text-align: center;  height: 12px;">You may know</h3>
+        <mat-divider></mat-divider>
+        <button mat-menu-item *ngFor="let persons of userlist" (click)="sendFriendRequest(persons.name.userId,persons.name.name)">
       <mat-icon>person_add</mat-icon>
       
        
       
       <span >{{persons.name.name}}</span><span *ngIf="isCompleted()"> Pending</span>
     </button>
-  </mat-menu>
- 
+    </mat-menu>
 
-  <button mat-button [routerLink]="['/user']" *ngIf="!isLoggedin">Home</button>
-  <button mat-raised-button color="accent" *ngIf="isLoggedin">
+
+    <button mat-button [routerLink]="['/user']" *ngIf="!isLoggedin">Home</button>
+    <button mat-raised-button color="accent" *ngIf="isLoggedin" [matMenuTriggerFor]="logout">
     <mat-icon>account_circle</mat-icon>Hello <span class="uname"> {{uname}}</span>
   </button>
-  <button mat-raised-button color="accent" [routerLink]="['/user/signup']" *ngIf="!isLoggedin">Signup</button>
+    <mat-menu #logout="matMenu">
+        <button mat-button (click)="lout()">
+      <mat-icon>logout</mat-icon>
+      <span>Log Out</span>
+    </button>
+    </mat-menu>
+    <button mat-raised-button color="accent" [routerLink]="['/user/signup']" *ngIf="!isLoggedin">Signup</button>
 
 </mat-toolbar>

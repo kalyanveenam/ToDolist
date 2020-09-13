@@ -13,21 +13,21 @@
     <div class="main-div">
         <div class="spacer"> </div>
         <mat-card class="card" fxFlex="25" fxFlex.xs="100%" fxFlex.sm="33%">
-                     <mat-toolbar color="primary">
+            <mat-toolbar color="primary">
                 <mat-icon>login</mat-icon> Login</mat-toolbar><br/>
-                <span  class="cred-invalid" *ngIf="isValidCredentials"> <mat-icon>warning</mat-icon>{{userNotFound}}</span>
+            <span class="cred-invalid" *ngIf="isValidCredentials"> <mat-icon>warning</mat-icon>{{userNotFound}}</span>
 
-            <form  [formGroup]="loginForm"  fxLayoutAlign="stretch" fxLayout="column" class="form" (ngSubmit)="onSubmit()">
+            <form [formGroup]="loginForm" fxLayoutAlign="stretch" fxLayout="column" class="form" (ngSubmit)="onSubmit()">
                 <mat-form-field class="example-full-width">
                     <mat-label>Email ID</mat-label>
-                    <input  [class.is-invalid]="loginForm.get('email').invalid && loginForm.get('email').touched" type="text"  formControlName="email" matInput placeholder="Registered Email ID" />
+                    <input [class.is-invalid]="loginForm.get('email').invalid && loginForm.get('email').touched" type="text" formControlName="email" matInput placeholder="Registered Email ID" />
                 </mat-form-field>
                 <div *ngIf="(emailControl.invalid && emailControl.touched) || emailControl.dirty">
                     <small *ngIf="emailControl.errors?.required" class="text-danger">Primary email is required</small>
                     <!--question mark(?) is a safe navigation operator-->
                     <small *ngIf="emailControl.errors?.pattern" class="text-danger">Please provide a valid email address</small>
                 </div>
-                <mat-form-field class="example-full-width">
+                <mat-form-field *ngIf="!isFp" class="example-full-width">
                     <mat-label>Password</mat-label>
                     <input [class.is-invalid]="loginForm.get('password').invalid && loginForm.get('password').touched" type="password" matInput formControlName="password" placeholder="Enter password" />
                 </mat-form-field>
@@ -37,18 +37,15 @@
                     <small *ngIf="passwordControl.errors?.pattern" class="text-danger">Password length should be atleast 8 and should have a number in it.</small>
                 </div>
                 <p>Dont have an account?<a [routerLink]="['/user/signup']">Signup</a></p>
-                <button mat-raised-button color="accent" [disabled]="!loginForm.valid" type="submit" >Login</button>
+                <p><a *ngIf="!isFp" (click)="forgotPassword()">Forgot password?</a></p>
+                <button *ngIf="!isFp" mat-raised-button color="accent" [disabled]="!loginForm.valid" type="submit">Login</button>
+                <button *ngIf="isFp" mat-raised-button color="accent" type="submit">Reset Password</button>
 
             </form>
         </mat-card>
     </div>
 </div>
-<ngx-spinner
-  bdColor="rgba(51,51,51,0.8)"
-  size="medium"
-  color="#fff"
-  type="ball-scale-multiple"
->
-  <p style="font-size: 20px; color: rgb(192, 192, 192)">Loading...</p>
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+    <p style="font-size: 20px; color: rgb(192, 192, 192)">Loading...</p>
 </ngx-spinner>
 <router-outlet></router-outlet>

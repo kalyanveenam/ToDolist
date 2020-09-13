@@ -26,7 +26,10 @@ import {
 export class HomeComponent implements OnInit {
   public isValidCredentials: boolean = false;
   public userNotFound;
-  constructor(private http: HttpService, private Router: Router, private spinner: NgxSpinnerService) {}
+  public isFp:boolean;
+  constructor(private http: HttpService, private Router: Router, private spinner: NgxSpinnerService) {
+    this.isFp=false;
+  }
   get emailControl() {
     return this.loginForm.get('email')
   }
@@ -45,7 +48,8 @@ export class HomeComponent implements OnInit {
   });
   public email;
   onSubmit = () => {
-
+if(!this.isFp)
+{
     localStorage.setItem('isLoggedin', 'true');
     this.spinner.show();
     var value = this.loginForm.value;
@@ -67,16 +71,25 @@ export class HomeComponent implements OnInit {
         console.log(error.error.error.data)
         this.isValidCredentials = true;
       }
-
-
     )
     console.log(value)
 
   }
+  else{
+    console.log(this.loginForm.value.email);
+  }
+}
   ngOnInit(): void {
     if (localStorage.getItem('isLoggedin') == 'true') {
       this.Router.navigate(['dashboard']);
     }
+    this.isFp=false;
   }
+public forgotPassword(){
+  this.isFp=true;
+}
 
+public fpHandler(){
+
+}
 }
