@@ -16,7 +16,7 @@
       <span>{{friend.name}}</span>
     </button>
         <mat-divider></mat-divider>
-        <h3 mat-subheader style="text-align: center;  height: 12px;">You may know</h3>
+        <h3 mat-subheader style="text-align: center;  height: 12px;">Current online Users</h3>
         <mat-divider></mat-divider>
         <button mat-menu-item *ngFor="let person of userList" (click)="sendFriendRequest(person.userId,person.name)">
       <mat-icon>person_add</mat-icon>
