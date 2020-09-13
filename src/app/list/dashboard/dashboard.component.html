@@ -1,19 +1,47 @@
 <app-navbar [uname]="uname" [userlist]="userList"></app-navbar>
 <mat-sidenav-container>
     <mat-sidenav mode="side" #sidenav id="sidenav" [class.menu-open]="isMenuOpened" [class.menu-open]="!isMenuOpened" opened>
-        <button style="width: 100%; text-align: left" mat-button class="friend-list">
-      My list</button><br />
-        <mat-divider></mat-divider>
-        <button style="height: 8vh; width: 100%; text-align: left" mat-button class="friend-list">
-      Friends list</button><br />
-        <mat-divider></mat-divider>
-          
+      <br/>
+        <div class="list-group" *ngFor="let friend of myFriends">
+            <a href="#" class="list-group-item list-group-item-action active">
+              My Friends
+            </a>
+            <a href="#" class="list-group-item list-group-item-action" (click)="getFriendsListById(friend.fromUser)">{{friend.senderName}}</a>
+
+          </div>
+        
+
+          <div class="list-group" *ngFor="let requests of pendingRequests">
+            <a href="#" class="list-group-item list-group-item-action active">
+              Friend Requests
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">{{requests.senderName}}</a>
+          </div>
+        
         <mat-divider></mat-divider>
         <br />
         <br />
 
 
     </mat-sidenav>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
     <mat-sidenav-content class="sidenav-content">
 
 

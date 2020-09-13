@@ -21,8 +21,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import{ SharedModule} from '../shared/shared.module';
 import { from } from 'rxjs';
+import { FriendRequestComponent } from './friend-request/friend-request.component';
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
-  declarations: [DashboardComponent, CreateListComponent],
+  declarations: [DashboardComponent, CreateListComponent, FriendRequestComponent],
   imports: [
     SharedModule,
     MatCheckboxModule,
@@ -39,9 +41,10 @@ import { from } from 'rxjs';
     MatInputModule,
     MatListModule,
     MatExpansionModule,
-    MatSidenavModule,
+    MatSidenavModule, 
     MatCardModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatDialogModule
   ],
 })
 export class ListModule {}

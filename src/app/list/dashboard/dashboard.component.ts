@@ -18,6 +18,8 @@ import {
 import {
   NgxSpinnerService
 } from "ngx-spinner";
+import {MatDialog} from '@angular/material/dialog';
+import { FriendRequestComponent } from '../friend-request/friend-request.component';
 export interface Task {
   name: string;
   completed: boolean;
@@ -35,11 +37,13 @@ export class DashboardComponent implements OnInit {
   public authToken: any = localStorage.getItem('authToken');
   public userList: any = [];
   public userNotification;
+  public myFriends:any;
   onlineUsers = [];
  uname:any=localStorage.getItem('name')
   allComplete: boolean = false;
   panelOpenState = false;
-  constructor(public SocketService: SocketService, private _snackBar: MatSnackBar, private http: HttpService, private spinner: NgxSpinnerService) {
+
+  constructor(public SocketService: SocketService, private _snackBar: MatSnackBar, private http: HttpService, private spinner: NgxSpinnerService,public dialog: MatDialog) {
     this.getOnlineUsers();
   }
  public lists;
@@ -48,11 +52,14 @@ export class DashboardComponent implements OnInit {
  public allTasks=[];
   isMenuOpened: boolean = true;
   activeOpenState = true;
+  public pendingRequests;
   ngOnInit(): void {
     this.getLists();
     this.activeOpenState = true;
     this.verifyUserConfirmation();
     this.getOnlineUsers();
+    this.getFriendStatus();
+    this.getFriends();
   }
   public verifyUserConfirmation: any = () => {
     this.SocketService.verifyUser().subscribe((data) => {
@@ -190,6 +197,7 @@ this.http.updateList(changes).subscribe((result)=>{
   this.http.updateList(changes).subscribe((result)=>{
     console.log(result);
     this.getLists();
+  
   })  
 }
 public delete(listid,taskid,subtaskid,type){
@@ -215,6 +223,40 @@ this.http.updateList(changes).subscribe((result)=>{
   this.getLists();
 })  
 }
+public getFriendStatus(){
+  this.http.getRequestStatus().subscribe((result)=>{
+    
+    this.pendingRequests=result['data']
+    console.log(this.pendingRequests)
+  })
+  }
+  public acceptReq(data){
+    console.log(JSON.stringify(data.fromUser))
+   this.http.updateRequest(data.fromUser).subscribe((result)=>{
+     console.log(result);
 
+      })
+  
+      // const dialogRef = this.dialog.open(FriendRequestComponent);
+  
+      // dialogRef.afterClosed().subscribe(result => {
+      //   console.log(`Dialog result: ${result}`);
+      // });
+    
+  }
+  public getFriends(){
+    this.http.getFriends().subscribe((res)=>{
+      console.log("raa"+JSON.stringify(res));
+      this.myFriends=res['data'];
+    })
+
+  }
+  public getFriendsListById(data){
+    console.log(data)
+    this.http.getListsById(data).subscribe((res)=>{
+console.log(res);
+    })
+
+  }
   
 }

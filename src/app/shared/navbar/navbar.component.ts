@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { HttpService } from 'src/app/http.service';
+import {MatDialog} from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -13,12 +15,27 @@ export class NavbarComponent implements OnInit {
   @Input() userlist:any;
 public isLoggedin:string=localStorage.getItem('isLoggedin')
   //public uname:any=localStorage.getItem('name')
-  constructor( public router: Router) {
-   
+
+  public isSent:any=localStorage.getItem('isSent')
+  constructor( public router: Router, public Http: HttpService,public dialog: MatDialog) {
+  
   }
   ngOnInit(): void {
   
   }
-  
+  isCompleted(){
+    return false;
+  }
+public sendFriendRequest(to,recieverId){
+ // console.log("coming here"+to+"hi"+recieverId);
+ this.Http.sendRequest(to,recieverId).subscribe((result)=>{
+   console.log(result)
+   const dialogRef = this.dialog.open(DialogComponent);
+
+   dialogRef.afterClosed().subscribe(result => {
+     console.log(`Dialog result: ${result}`);
+ })
+})
+}
 
 }

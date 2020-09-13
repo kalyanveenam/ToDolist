@@ -17,10 +17,14 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatDividerModule} from '@angular/material/divider';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogComponent } from './dialog/dialog.component';
+
 @NgModule({
-  declarations: [NavbarComponent, LogoutComponent, CorouselComponent],
-  imports: [MatBadgeModule,FormsModule,ReactiveFormsModule,CommonModule, SharedRoutingModule,MatToolbarModule,MatButtonModule,MatIconModule,MatDividerModule, SlickCarouselModule,MatExpansionModule,MatMenuModule],
+  declarations: [NavbarComponent, LogoutComponent, CorouselComponent, DialogComponent],
+  imports: [MatDialogModule,MatBadgeModule,FormsModule,ReactiveFormsModule,CommonModule, SharedRoutingModule,MatToolbarModule,MatButtonModule,MatIconModule,MatDividerModule, SlickCarouselModule,MatExpansionModule,MatMenuModule],
   providers: [HttpService],
+ entryComponents:[DialogComponent],
   exports: [NavbarComponent,CorouselComponent],
 })
 export class SharedModule {}
