@@ -18,13 +18,13 @@ import {
 import {
   NgxSpinnerService
 } from "ngx-spinner";
-import {MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { FriendRequestComponent } from '../friend-request/friend-request.component';
 export interface Task {
   name: string;
   completed: boolean;
   color: ThemePalette;
-  subtasks ? : Task[];
+  subtasks?: Task[];
 }
 
 @Component({
@@ -37,19 +37,19 @@ export class DashboardComponent implements OnInit {
   public authToken: any = localStorage.getItem('authToken');
   public userList: any = [];
   public userNotification;
-  public myFriends:any;
+  public myFriends: any;
   onlineUsers = [];
- uname:any=localStorage.getItem('name')
+  uname: any = localStorage.getItem('name')
   allComplete: boolean = false;
   panelOpenState = false;
 
-  constructor(public SocketService: SocketService, private _snackBar: MatSnackBar, private http: HttpService, private spinner: NgxSpinnerService,public dialog: MatDialog) {
+  constructor(public SocketService: SocketService, private _snackBar: MatSnackBar, private http: HttpService, private spinner: NgxSpinnerService, public dialog: MatDialog) {
     this.getOnlineUsers();
   }
- public lists;
- public tasks;
- public isEdit =false;
- public allTasks=[];
+  public lists;
+  public tasks;
+  public isEdit = false;
+  public allTasks = [];
   isMenuOpened: boolean = true;
   activeOpenState = true;
   public pendingRequests;
@@ -69,9 +69,9 @@ export class DashboardComponent implements OnInit {
       this.offlineUser();
     })
   }
-public editView(){
-  this.isEdit=true;
-}
+  public editView() {
+    this.isEdit = true;
+  }
   selected = '';
   toggleNavbar() {
     console.log('toggled' + this.isMenuOpened);
@@ -91,16 +91,23 @@ public editView(){
     this.SocketService.userList().subscribe((user) => {
 
       this.userList = [];
-      for (let x in user) {
-        let tmp = {
-          'user': x,
-          'name': user[x]
-        }
-        this.userList.push(tmp);
-        console.log(this.userList)
+      for (var x in user) {
+        if (!this.isUserExists(this.userList, user[x]['userId']))
+          this.userList.push(user[x]);
       }
-    
+      console.log('hi ' + JSON.stringify(this.userList));
     })
+  }
+  public isUserExists(userList, id) {
+    if (userList.length == 0)
+      return false;
+    else {
+      for (var x in userList) {
+        if (userList[x]['userId'] == id)
+          return true;
+      }
+      return false;
+    }
   }
   offlineUser() {
     this.SocketService.userOffline().subscribe((user) => {
@@ -112,151 +119,146 @@ public editView(){
   }
   public getLists() {
     this.http.getLists().subscribe((response) => {
-this.lists=(response["data"])
-console.log('lists are '+this.lists);
-   for (let i=0;i<this.lists.length;i++){
-  console.log(response['data'])
-    this.tasks=   response["data"][i].tasks;
+      this.lists = (response["data"])
+      console.log('lists are ' + this.lists);
+      for (let i = 0; i < this.lists.length; i++) {
+        console.log(response['data'])
+        this.tasks = response["data"][i].tasks;
 
- this.allTasks.push(this.tasks)
-   }
+        this.allTasks.push(this.tasks)
+      }
 
- //   console.log(this.tasks)
+      //   console.log(this.tasks)
     });
   }
-  public getTasks(list){
-return list.tasks;
+  public getTasks(list) {
+    return list.tasks;
   }
-  
-  public getSubTasks(task){
-   
+
+  public getSubTasks(task) {
+
     return task.subtask;
   }
 
-  public update(form)
-  {
+  public update(form) {
     console.log(form);
     let dirtyValues = {};
 
     Object.keys(form.controls)
-        .forEach(key => {
-            const currentControl = form.controls[key];
+      .forEach(key => {
+        const currentControl = form.controls[key];
 
-            if (currentControl.dirty) {
-                if (currentControl.controls)
-                    dirtyValues[key] = this.update(currentControl);
-                else
-                    dirtyValues[key] = currentControl.value;
-            }
-        });
+        if (currentControl.dirty) {
+          if (currentControl.controls)
+            dirtyValues[key] = this.update(currentControl);
+          else
+            dirtyValues[key] = currentControl.value;
+        }
+      });
 
     console.log(dirtyValues);
 
     var changes = [];
-    for(var i in dirtyValues){
+    for (var i in dirtyValues) {
       var change = {};
       var splitted = i.toString().split('_');
       console.log(splitted);
-      change['type']=splitted[0];
-      change['list_id']=splitted[1];
-      if(splitted[2])
-      change['task_id']=splitted[2];
-      if(splitted[3])
-      change['subtask_id']=splitted[3];
-      change['value']= dirtyValues[i];
-      change['field']='title';
+      change['type'] = splitted[0];
+      change['list_id'] = splitted[1];
+      if (splitted[2])
+        change['task_id'] = splitted[2];
+      if (splitted[3])
+        change['subtask_id'] = splitted[3];
+      change['value'] = dirtyValues[i];
+      change['field'] = 'title';
       changes.push(change);
     }
 
-    console.log('changes are '+JSON.stringify(changes));
-this.http.updateList(changes).subscribe((result)=>{
-  console.log(result);
-  this.getLists();
-  this.isEdit=false;
-})
+    console.log('changes are ' + JSON.stringify(changes));
+    this.http.updateList(changes).subscribe((result) => {
+      console.log(result);
+      this.getLists();
+      this.isEdit = false;
+    })
   }
-  public updateCheckbox(event,listid,taskid,subtaskid,type){
-    console.log(event.checked+'d'+listid);
+  public updateCheckbox(event, listid, taskid, subtaskid, type) {
+    console.log(event.checked + 'd' + listid);
     var changes = [];
     var change = {};
-    change['type']=type;
-    change['list_id']=listid;
-    if(type='subtask')
-    {
-      change['task_id']=taskid;
-      change['subtask_id']=subtaskid;
+    change['type'] = type;
+    change['list_id'] = listid;
+    if (type = 'subtask') {
+      change['task_id'] = taskid;
+      change['subtask_id'] = subtaskid;
     }
-    if(type='task')
-    {
-      change['task_id']=taskid;
+    if (type = 'task') {
+      change['task_id'] = taskid;
     }
-    change['field']='completed';
-    change['value']=event.checked;
-  changes.push(change);
-  console.log(JSON.stringify(changes));
-  this.http.updateList(changes).subscribe((result)=>{
-    console.log(result);
-    this.getLists();
-  
-  })  
-}
-public delete(listid,taskid,subtaskid,type){
-  var changes = [];
-  var change = {};
-  change['type']=type;
-  change['list_id']=listid;
-  if(type='subtask')
-  {
-    change['task_id']=taskid;
-    change['subtask_id']=subtaskid;
+    change['field'] = 'completed';
+    change['value'] = event.checked;
+    changes.push(change);
+    console.log(JSON.stringify(changes));
+    this.http.updateList(changes).subscribe((result) => {
+      console.log(result);
+      this.getLists();
+
+    })
   }
-  if(type='task')
-  {
-    change['task_id']=taskid;
+  public delete(listid, taskid, subtaskid, type) {
+    var changes = [];
+    var change = {};
+    change['type'] = type;
+    change['list_id'] = listid;
+    if (type = 'subtask') {
+      change['task_id'] = taskid;
+      change['subtask_id'] = subtaskid;
+    }
+    if (type = 'task') {
+      change['task_id'] = taskid;
+    }
+    change['field'] = 'delete';
+    change['value'] = 'delete';
+    changes.push(change);
+    console.log(JSON.stringify(changes));
+    this.http.updateList(changes).subscribe((result) => {
+      console.log(result);
+      this.getLists();
+    })
   }
-  change['field']='delete';
-  change['value']='delete';
-changes.push(change);
-console.log(JSON.stringify(changes));
-this.http.updateList(changes).subscribe((result)=>{
-  console.log(result);
-  this.getLists();
-})  
-}
-public getFriendStatus(){
-  this.http.getRequestStatus().subscribe((result)=>{
-    
-    this.pendingRequests=result['data']
-    console.log(this.pendingRequests)
-  })
+  public getFriendStatus() {
+    this.http.getRequestStatus().subscribe((result) => {
+
+      this.pendingRequests = result['data']
+      console.log(this.pendingRequests)
+    })
   }
-  public acceptReq(data){
+  public acceptReq(data) {
     console.log(JSON.stringify(data.fromUser))
-   this.http.updateRequest(data.fromUser).subscribe((result)=>{
-     console.log(result);
+    this.http.updateRequest(data.fromUser).subscribe((result) => {
+      console.log(result);
 
-      })
-  
-      // const dialogRef = this.dialog.open(FriendRequestComponent);
-  
-      // dialogRef.afterClosed().subscribe(result => {
-      //   console.log(`Dialog result: ${result}`);
-      // });
-    
+    })
+
+    // const dialogRef = this.dialog.open(FriendRequestComponent);
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log(`Dialog result: ${result}`);
+    // });
+
   }
-  public getFriends(){
-    this.http.getFriends().subscribe((res)=>{
-      console.log("raa"+JSON.stringify(res));
-      this.myFriends=res['data'];
+  public getFriends() {
+    this.http.getFriends().subscribe((res) => {
+      console.log("raa" + JSON.stringify(res));
+      this.myFriends = res['data'];
     })
 
   }
-  public getFriendsListById(data){
+  public getFriendsListById(data) {
     console.log(data)
-    this.http.getListsById(data).subscribe((res)=>{
-console.log(res);
+    this.http.getListsById(data).subscribe((res) => {
+      console.log(res);
     })
 
   }
-  
+
 }
