@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/http.service';
 import { Router } from '@angular/router';
+import { SocketService } from 'src/app/socket.service';
 
 @Component({
   selector: 'app-create-list',
@@ -13,7 +14,7 @@ export class CreateListComponent implements OnInit {
   mytasks = [];
   public subtasks = [];
   public subtask = {};
-  constructor(private http: HttpService, private router:Router) {
+  constructor(private http: HttpService, private router:Router, private socket: SocketService) {
  
 
   }
@@ -70,7 +71,12 @@ export class CreateListComponent implements OnInit {
     payload['owner']=localStorage.getItem('id')
     console.log(JSON.stringify(payload));
        this.http.createList(payload).subscribe((data)=>{
-         console.log(data)
+        // console.log(data)
+         this.socket.createdList("Sample notification")
+         this.socket.listCreated().subscribe((data) => {
+       
+          console.log("hifh:" + data)
+        })
          this.router.navigate(['/dashboard'])
        })
     

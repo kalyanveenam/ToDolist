@@ -19,10 +19,12 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatCardModule} from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-
+import{ SharedModule} from '../shared/shared.module';
+import { from } from 'rxjs';
 @NgModule({
   declarations: [DashboardComponent, CreateListComponent],
   imports: [
+    SharedModule,
     MatCheckboxModule,
     MatSelectModule,
     CommonModule,

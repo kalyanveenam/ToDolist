@@ -36,52 +36,11 @@ export class DashboardComponent implements OnInit {
   public userList: any = [];
   public userNotification;
   onlineUsers = [];
-  // task: Task = {
-  //   name: 'Get Tablets',
-  //   completed: false,
-  //   color: 'primary',
-  //   subtasks: [{
-  //       name: 'Asthaphen',
-  //       completed: false,
-  //       color: 'primary'
-  //     },
-  //     {
-  //       name: 'Ascoril',
-  //       completed: false,
-  //       color: 'primary'
-  //     },
-  //     {
-  //       name: 'Unicontin',
-  //       completed: false,
-  //       color: 'primary'
-  //     }
-  //   ]
-  // };
+ uname:any=localStorage.getItem('name')
   allComplete: boolean = false;
-
-  // updateAllComplete() {
-  //   this.allComplete = this.task.subtasks != null && this.task.subtasks.every(t => t.completed);
-  // }
-
-  // someComplete(): boolean {
-  //   if (this.task.subtasks == null) {
-  //     return false;
-  //   }
-  //   return this.task.subtasks.filter(t => t.completed).length > 0 && !this.allComplete;
-  // }
-
-  // setAll(completed: boolean) {
-  //   this.allComplete = completed;
-  //   if (this.task.subtasks == null) {
-  //     return;
-  //   }
-  //   this.task.subtasks.forEach(t => t.completed = completed);
-  // }
-
   panelOpenState = false;
   constructor(public SocketService: SocketService, private _snackBar: MatSnackBar, private http: HttpService, private spinner: NgxSpinnerService) {
     this.getOnlineUsers();
-
   }
  public lists;
  public tasks;
@@ -89,7 +48,6 @@ export class DashboardComponent implements OnInit {
  public allTasks=[];
   isMenuOpened: boolean = true;
   activeOpenState = true;
- 
   ngOnInit(): void {
     this.getLists();
     this.activeOpenState = true;
@@ -132,6 +90,7 @@ public editView(){
           'name': user[x]
         }
         this.userList.push(tmp);
+        console.log(this.userList)
       }
     
     })

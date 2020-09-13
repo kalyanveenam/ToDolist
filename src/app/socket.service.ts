@@ -53,6 +53,16 @@ export class SocketService {
       })
     })
   }
+  public listCreated=()=>{
+    return Observable.create((observer)=>{
+      this.socket.on('list-created',(data)=>{
+        observer.next(data);
+      })
+    })
+  }
+  public createdList=(list)=>{
+    this.socket.emit("create-list",list)
+  }
   public disconnectUser = () => {
     return Observable.create((observer) => {
       this.socket.on('disconnect', () => {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,13 +7,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
+  hidden = false;
+
+  @Input() uname:any;
+  @Input() userlist:any;
 public isLoggedin:string=localStorage.getItem('isLoggedin')
-  public uname:any=localStorage.getItem('name')
+  //public uname:any=localStorage.getItem('name')
   constructor( public router: Router) {
    
   }
   ngOnInit(): void {
   
   }
+  
 
 }

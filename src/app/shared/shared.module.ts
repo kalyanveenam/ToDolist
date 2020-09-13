@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SharedRoutingModule } from './shared-routing.module';
+import {MatBadgeModule} from '@angular/material/badge';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { LogoutComponent } from './logout/logout.component';
@@ -18,7 +19,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [NavbarComponent, LogoutComponent, CorouselComponent],
-  imports: [FormsModule,ReactiveFormsModule,CommonModule, SharedRoutingModule,MatToolbarModule,MatButtonModule,MatIconModule,MatDividerModule, SlickCarouselModule,MatExpansionModule,MatMenuModule],
+  imports: [MatBadgeModule,FormsModule,ReactiveFormsModule,CommonModule, SharedRoutingModule,MatToolbarModule,MatButtonModule,MatIconModule,MatDividerModule, SlickCarouselModule,MatExpansionModule,MatMenuModule],
   providers: [HttpService],
   exports: [NavbarComponent,CorouselComponent],
 })

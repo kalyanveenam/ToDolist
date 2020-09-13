@@ -9,3 +9,9 @@
 .uname {
   color: rgb(23, 0, 61);
 }
+.user-list{
+  margin-right: 25vw;
+}
+.nav-bar{
+  background-color: aqua !important;
+}
