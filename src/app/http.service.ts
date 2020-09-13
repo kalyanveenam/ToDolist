@@ -59,6 +59,15 @@ export class HttpService {
       headers: header
     });
   }
+  
+  public getAcceptedFriends(){
+    let header = {};
+    header['Authorization'] = localStorage.getItem('authToken');
+    header['Content-type'] = 'application/json';
+    return this._http.get(this.baseUrl + '/friends/accepted', {
+      headers: header
+    });
+  }
   public getListsById(id) {
 
     let header = {};
@@ -113,6 +122,11 @@ export class HttpService {
     return this._http.get(this.baseUrl + '/list/friends?status=pending', {
       headers: header
     });
+  }
+
+  public forgotPassword(email) {
+    const endpoint = this.baseUrl + '/forgotPassword';
+    return this._http.post(endpoint, { email: email });
   }
   public getFriends(){
     let header = {};

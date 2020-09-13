@@ -53,13 +53,38 @@ export class DashboardComponent implements OnInit {
   isMenuOpened: boolean = true;
   activeOpenState = true;
   public pendingRequests;
+  public friends;
   ngOnInit(): void {
     this.getLists();
     this.activeOpenState = true;
     this.verifyUserConfirmation();
     this.getOnlineUsers();
+    this.friends=[];
     this.getFriendStatus();
-    this.getFriends();
+    this.getAcceptedFriends();
+  }
+  public getAcceptedFriends(){
+    let currUser = localStorage.getItem('id');
+ 
+    this.http.getAcceptedFriends().subscribe((result)=>{
+    
+          console.log('acc ' +JSON.stringify(result));
+          for(let i in result['data']){
+            if(result['data'][i]['fromUser']==currUser){
+              let friend = {};
+              friend['id'] = result['data'][i]['toUser'];
+              friend['name']= result['data'][i]['recieverName'];
+              this.friends.push(friend);
+            }
+            else if(result['data'][i]['toUser']==currUser){
+              let friend = {};
+              friend['id'] = result['data'][i]['fromUser'];
+              friend['name']= result['data'][i]['senderName'];
+              this.friends.push(friend);
+            }
+          }
+          console.log('my friends are '+JSON.stringify(this.friends));
+    })
   }
   public verifyUserConfirmation: any = () => {
     this.SocketService.verifyUser().subscribe((data) => {
@@ -92,7 +117,7 @@ export class DashboardComponent implements OnInit {
 
       this.userList = [];
       for (var x in user) {
-        if (!this.isUserExists(this.userList, user[x]['userId']))
+        if (!this.isUserExists(this.userList, user[x]['userId']) && user[x]['userId']!=localStorage.getItem('id') )
           this.userList.push(user[x]);
       }
       console.log('hi ' + JSON.stringify(this.userList));
@@ -103,12 +128,14 @@ export class DashboardComponent implements OnInit {
       return false;
     else {
       for (var x in userList) {
+        console.log('uid is '+userList[x]['userId']+' and '+localStorage.getItem('id'));
         if (userList[x]['userId'] == id)
           return true;
       }
       return false;
     }
   }
+
   offlineUser() {
     this.SocketService.userOffline().subscribe((user) => {
       this._snackBar.open(user, 'User offline', {
@@ -236,7 +263,6 @@ export class DashboardComponent implements OnInit {
     console.log(JSON.stringify(data.fromUser))
     this.http.updateRequest(data.fromUser).subscribe((result) => {
       console.log(result);
-
     })
 
     // const dialogRef = this.dialog.open(FriendRequestComponent);

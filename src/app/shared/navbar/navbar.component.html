@@ -11,14 +11,14 @@
     <mat-menu #menu="matMenu" class="menu_items">
         <h3 mat-subheader style="text-align: center;  height: 12px;">Your friends</h3>
         <mat-divider></mat-divider>
-        <button mat-menu-item>
+        <button *ngFor="let friend of friends" mat-menu-item>
       <mat-icon [ngStyle]="{'color':'green'}">stop_circle</mat-icon>
-      <span>Karthik</span>
+      <span>{{friend.name}}</span>
     </button>
         <mat-divider></mat-divider>
         <h3 mat-subheader style="text-align: center;  height: 12px;">You may know</h3>
         <mat-divider></mat-divider>
-        <button mat-menu-item *ngFor="let person of userlist" (click)="sendFriendRequest(persons.name.userId,persons.name.name)">
+        <button mat-menu-item *ngFor="let person of userList" (click)="sendFriendRequest(person.userId,person.name)">
       <mat-icon>person_add</mat-icon>
       
        
@@ -30,7 +30,7 @@
 
     <button mat-button [routerLink]="['/user']" *ngIf="!isLoggedin">Home</button>
     <button mat-raised-button color="accent" *ngIf="isLoggedin" [matMenuTriggerFor]="logout">
-    <mat-icon>account_circle</mat-icon>Hello <span class="uname"> {{uname}}</span>
+    <mat-icon>account_circle</mat-icon>Hello {{uname}}
   </button>
     <mat-menu #logout="matMenu">
         <button mat-button (click)="lout()">
