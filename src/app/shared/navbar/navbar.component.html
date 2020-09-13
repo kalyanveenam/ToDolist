@@ -18,12 +18,12 @@
         <mat-divider></mat-divider>
         <h3 mat-subheader style="text-align: center;  height: 12px;">You may know</h3>
         <mat-divider></mat-divider>
-        <button mat-menu-item *ngFor="let persons of userlist" (click)="sendFriendRequest(persons.name.userId,persons.name.name)">
+        <button mat-menu-item *ngFor="let person of userlist" (click)="sendFriendRequest(persons.name.userId,persons.name.name)">
       <mat-icon>person_add</mat-icon>
       
        
       
-      <span >{{persons.name.name}}</span><span *ngIf="isCompleted()"> Pending</span>
+      <span >{{person.name}}</span><span *ngIf="isCompleted()"> Pending</span>
     </button>
     </mat-menu>
 
