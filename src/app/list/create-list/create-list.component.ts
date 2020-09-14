@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/http.service';
 import { Router } from '@angular/router';
 import { SocketService } from 'src/app/socket.service';
-
+import {
+  NgxSpinnerService
+} from "ngx-spinner";
 @Component({
   selector: 'app-create-list',
   templateUrl: './create-list.component.html',
@@ -14,7 +16,7 @@ export class CreateListComponent implements OnInit {
   mytasks = [];
   public subtasks = [];
   public subtask = {};
-  constructor(private http: HttpService, private router:Router, private socket: SocketService) {
+  constructor(private http: HttpService, private router:Router, private socket: SocketService,private spinner: NgxSpinnerService) {
  
 
   }
@@ -49,7 +51,7 @@ export class CreateListComponent implements OnInit {
   }
 
   public createList(data) {
-    
+    this.spinner.show();
     let payload = {};
     payload['title'] = data.value['title'];
     let tasks = [];
@@ -77,6 +79,7 @@ export class CreateListComponent implements OnInit {
        
         
         })
+        this.spinner.hide();
          this.router.navigate(['/dashboard'])
        })
     

@@ -10,10 +10,15 @@
             <a *ngFor="let friend of friends" class="list-group-item list-group-item-action" (click)="getFriendList(friend.id)">{{friend.name}}</a>
         </div>
         <div class="list-group" >
-            <div  class="list-group-item list-group-item-action active">
-              Friend Requests
+            <div  class="list-group-item list-group-item-action active"> Friend Requests <button mat-icon-button (click)="refresh()" >
+                <mat-icon >refresh</mat-icon>
+
+            </button>
+
             </div>
-            <a  (click)="acceptReq(requests)" *ngFor="let requests of pendingRequests" class="list-group-item list-group-item-action">{{requests.senderName}}</a>
+            <a  (click)="acceptReq(requests)" *ngFor="let requests of pendingRequests" class="list-group-item list-group-item-action">
+                <button mat-flat-button color="accent" (click)="acceptReq(requests)">Accept</button>
+                {{requests.senderName}}</a>
         </div>
         <mat-divider></mat-divider>
         <br />

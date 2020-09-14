@@ -282,6 +282,9 @@ id=localStorage.getItem('id');
       this.getLists();
     })
   }
+  public refresh(){
+    window.location.reload();
+  }
   public getFriendStatus() {
     this.http.getRequestStatus().subscribe((result) => {
 
@@ -290,8 +293,10 @@ id=localStorage.getItem('id');
     })
   }
   public acceptReq(data) {
-
+this.spinner.show();
     this.http.updateRequest(data.fromUser).subscribe((result) => {
+     window.location.reload()
+     this.spinner.hide();
 
     })
 

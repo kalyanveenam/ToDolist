@@ -23,9 +23,11 @@ import{ SharedModule} from '../shared/shared.module';
 import { from } from 'rxjs';
 import { FriendRequestComponent } from './friend-request/friend-request.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   declarations: [DashboardComponent, CreateListComponent, FriendRequestComponent],
   imports: [
+    NgxSpinnerModule,
     SharedModule,
     MatCheckboxModule,
     MatSelectModule,
