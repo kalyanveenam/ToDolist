@@ -91,12 +91,12 @@ export class HttpService {
       }
     );
   }
-  public updateList(payload) {
+  public updateList(payload,id) {
     let header = {};
     header['Authorization'] = localStorage.getItem('authToken');
     header['Content-type'] = 'application/json';
     return this._http.put(
-      this.baseUrl + '/update/list',
+      this.baseUrl + '/update/list?id='+id,
       payload, {
         headers: header
       }

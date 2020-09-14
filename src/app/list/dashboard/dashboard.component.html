@@ -4,15 +4,15 @@
 
         <br/>
         <div class="list-group"  >
-            <a href="#" class="list-group-item list-group-item-action active">
+            <div  class="list-group-item list-group-item-action active">
               My Friends
-            </a>
-            <a href="#" *ngFor="let friend of friends" class="list-group-item list-group-item-action" (click)="getFriendsListById(friend)">{{friend.name}}</a>
+            </div>
+            <a *ngFor="let friend of friends" class="list-group-item list-group-item-action" (click)="getFriendList(friend.id)">{{friend.name}}</a>
         </div>
         <div class="list-group" >
-            <a href="#" class="list-group-item list-group-item-action active">
+            <div  class="list-group-item list-group-item-action active">
               Friend Requests
-            </a>
+            </div>
             <a  (click)="acceptReq(requests)" *ngFor="let requests of pendingRequests" class="list-group-item list-group-item-action">{{requests.senderName}}</a>
         </div>
         <mat-divider></mat-divider>
@@ -76,7 +76,7 @@
                     <mat-panel-title> Active Lists </mat-panel-title>
                     <mat-panel-description> Your Current lists </mat-panel-description>
                 </mat-expansion-panel-header>
-                <form ngForm #data=ngForm (submit)="update(data)">
+                <form ngForm #data=ngForm (submit)="update(data,false)">
                     <mat-expansion-panel *ngFor="let list of lists;index as listid;">
                         <!-- <mat-card >}</mat-card> -->
                         <mat-expansion-panel-header *ngIf="!list.isCompleted">
@@ -129,6 +129,65 @@
                 list marked as Completed: {{shoes.selectedOptions.selected.length}}
               </p> -->
         </mat-accordion> <br />
-        
+        <mat-accordion>
+            <mat-expansion-panel [expanded]="true" (opened)="activeOpenState = true" (closed)="activeOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title> Friends Lists </mat-panel-title>
+                    <mat-panel-description> Your friends lists </mat-panel-description>
+                </mat-expansion-panel-header>
+                <form ngForm #friendData=ngForm (submit)="update(friendData,true)">
+                    <mat-expansion-panel *ngFor="let list of friendList;index as listid;">
+                        <!-- <mat-card >}</mat-card> -->
+  
+                        <mat-expansion-panel-header *ngIf="!list.isCompleted">
+                            <mat-panel-title class="list-tit" *ngIf="!isEdit">{{list.title}}</mat-panel-title>
+                          
+
+                            <input ngModel="{{list.title}}" name="list_{{listid}}" matInput *ngIf="isEdit" />
+                            <button *ngIf="!isEdit" (click)="editView()" class="edit-btn">
+                        <mat-icon >edit</mat-icon>
+                      </button>
+                        </mat-expansion-panel-header>
+                        <mat-expansion-panel *ngFor="let task of getTasks(list);index as taskid;">
+                            <mat-expansion-panel-header>
+                              <div *ngIf="!isEdit">  {{task.title}} </div>
+                               
+                                <input name="task_{{listid}}_{{taskid}}" matInput *ngIf="isEdit" ngModel="{{task.title}}" />
+                            </mat-expansion-panel-header>
+                            <mat-expansion-panel-content>
+                                <div *ngIf="!isEdit">
+                                <div *ngFor="let subtask of getSubTasks(task);index as subtaskid;">  {{subtask.description}}</div>
+                                </div>
+                                <div *ngIf="isEdit">
+                                    <input matInput ngModel name="subtask_{{listid}}_{{taskid}}_{{subtaskid}}" *ngFor="let subtask of getSubTasks(task);index as subtaskid;" ngModel="{{subtask.description}}" />
+                                </div>
+                            </mat-expansion-panel-content>
+                        </mat-expansion-panel>
+                        <br /><br />
+                        <div style="text-align: center;">
+                            <button *ngIf="isEdit" mat-raised-button color="accent" type="submit">Save</button>
+                        </div>
+                    </mat-expansion-panel>
+                </form>
+            </mat-expansion-panel>
+            <!-- <mat-card class="active-cards" *ngFor="let list of lists">
+          <mat-card-header class="list-header">
+            <mat-card-title class="list-title">
+              {{list.title}}
+            </mat-card-title>
+            <mat-card-subtitle>created by kalyan</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="active-tasks" *ngFor="let tasks of getTasks(list)">
+              <mat-checkbox class="task-checkbox"></mat-checkbox><span class="task-title"> {{tasks.title}}</span>
+              <mat-selection-list #shoes>
+                <mat-list-option *ngFor="let shoe of getSubTasks(tasks)">
+                  <span class="active-subtasks">{{shoe.description}}</span>
+                </mat-list-option>
+              </mat-selection-list> -->
+            <!-- <p>
+                list marked as Completed: {{shoes.selectedOptions.selected.length}}
+              </p> -->
+        </mat-accordion> <br />
     </mat-sidenav-content>
 </mat-sidenav-container>

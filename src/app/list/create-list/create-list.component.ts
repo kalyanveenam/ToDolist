@@ -49,7 +49,7 @@ export class CreateListComponent implements OnInit {
   }
 
   public createList(data) {
-    console.log(data.value);
+    
     let payload = {};
     payload['title'] = data.value['title'];
     let tasks = [];
@@ -69,13 +69,13 @@ export class CreateListComponent implements OnInit {
     }
     payload['tasks'] = tasks;
     payload['owner']=localStorage.getItem('id')
-    console.log(JSON.stringify(payload));
+    
        this.http.createList(payload).subscribe((data)=>{
-        // console.log(data)
+ 
          this.socket.createdList("Sample notification")
          this.socket.listCreated().subscribe((data) => {
        
-          console.log("hifh:" + data)
+        
         })
          this.router.navigate(['/dashboard'])
        })

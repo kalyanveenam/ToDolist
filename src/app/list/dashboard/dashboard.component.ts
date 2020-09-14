@@ -42,6 +42,8 @@ export class DashboardComponent implements OnInit {
   public userList: any = [];
   public userNotification;
   public myFriends: any;
+  public id;
+  public friendID;
   onlineUsers = [];
   uname: any = localStorage.getItem('name')
   allComplete: boolean = false;
@@ -49,6 +51,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(public SocketService: SocketService, private _snackBar: MatSnackBar, private http: HttpService, private spinner: NgxSpinnerService, public dialog: MatDialog) {
     this.getOnlineUsers();
+
   }
   public lists;
   public tasks;
@@ -58,15 +61,28 @@ export class DashboardComponent implements OnInit {
   activeOpenState = true;
   public pendingRequests;
   public friends;
+  public friendList;
   ngOnInit(): void {
-    this.getLists();
+
     this.activeOpenState = true;
     this.verifyUserConfirmation();
     this.getOnlineUsers();
     this.friends = [];
+    this.getFriendsListById(localStorage.getItem('id'));
     this.getFriendStatus();
     this.getAcceptedFriends();
   }
+  public getFriendList(id)
+  {
+    this.friendID =id;
+    this.http.getListsById(id).subscribe((res) => {
+      console.log(res);
+      this.friendList =res['data'];
+      console.log('fl is '+this.friendList);
+    })
+
+  }
+  
   public getAcceptedFriends() {
     let currUser = localStorage.getItem('id');
 
@@ -170,7 +186,7 @@ export class DashboardComponent implements OnInit {
     return task.subtask;
   }
 
-  public update(form) {
+  public update(form,isFriend) {
 
     let dirtyValues = {};
 
@@ -180,7 +196,7 @@ export class DashboardComponent implements OnInit {
 
         if (currentControl.dirty) {
           if (currentControl.controls)
-            dirtyValues[key] = this.update(currentControl);
+            dirtyValues[key] = this.update(currentControl,isFriend);
           else
             dirtyValues[key] = currentControl.value;
         }
@@ -203,15 +219,18 @@ export class DashboardComponent implements OnInit {
       change['field'] = 'title';
       changes.push(change);
     }
-
-
-    this.http.updateList(changes).subscribe((result) => {
+let id;
+if(isFriend)
+id=this.friendID;
+else
+id=localStorage.getItem('id');
+    this.http.updateList(changes,id).subscribe((result) => {
 
       this.getLists();
       this.isEdit = false;
     })
   }
-  public updateCheckbox(event, listid, taskid, subtaskid, type) {
+  public updateCheckbox(event, listid, taskid, subtaskid, type,isFriend) {
 
     let changes = [];
     let change = {};
@@ -227,14 +246,18 @@ export class DashboardComponent implements OnInit {
     change['field'] = 'completed';
     change['value'] = event.checked;
     changes.push(change);
-
-    this.http.updateList(changes).subscribe((result) => {
+    let id;
+    if(isFriend)
+    id=this.friendID;
+    else
+    id=localStorage.getItem('id');
+    this.http.updateList(changes,id).subscribe((result) => {
 
       this.getLists();
 
     })
   }
-  public delete(listid, taskid, subtaskid, type) {
+  public delete(listid, taskid, subtaskid, type,isFriend) {
     let changes = [];
     let change = {};
     change['type'] = type;
@@ -249,8 +272,12 @@ export class DashboardComponent implements OnInit {
     change['field'] = 'delete';
     change['value'] = 'delete';
     changes.push(change);
-
-    this.http.updateList(changes).subscribe((result) => {
+    let id;
+    if(isFriend)
+    id=this.friendID;
+    else
+    id=localStorage.getItem('id');
+    this.http.updateList(changes,id).subscribe((result) => {
 
       this.getLists();
     })
@@ -276,10 +303,11 @@ export class DashboardComponent implements OnInit {
     })
 
   }
-  public getFriendsListById(data) {
+  public getFriendsListById(id) {
 
-    this.http.getListsById(data.id).subscribe((res) => {
-
+    this.http.getListsById(id).subscribe((res) => {
+      console.log(res);
+      this.lists =res['data'];
     })
 
   }
