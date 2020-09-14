@@ -18,6 +18,8 @@ import {
 import {
   NgxSpinnerService
 } from "ngx-spinner";
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -26,9 +28,11 @@ import {
 export class HomeComponent implements OnInit {
   public isValidCredentials: boolean = false;
   public userNotFound;
-  public isFp:boolean;
+  public isFp: boolean;
+  panelOpenState = false;
   constructor(private http: HttpService, private router: Router, private spinner: NgxSpinnerService) {
-    this.isFp=false;
+    this.isFp = false;
+
   }
   get emailControl() {
     return this.loginForm.get('email')
@@ -48,60 +52,58 @@ export class HomeComponent implements OnInit {
   });
   public email;
   onSubmit = () => {
-if(!this.isFp)
-{
-    localStorage.setItem('isLoggedin', 'true');
-    this.spinner.show();
-    var value = this.loginForm.value;
-    this.http.signin(value.email, value.password).subscribe(
-      (result) => {
-        localStorage.setItem('authToken', result['data']['token']['token'])
-        localStorage.setItem('id', result['data']['userDetails']['_id'])
-        localStorage.setItem('name', result['data']['userDetails']['name'])
+    if (!this.isFp) {
+      localStorage.setItem('isLoggedin', 'true');
+      this.spinner.show();
+      let value = this.loginForm.value;
+      this.http.signin(value.email, value.password).subscribe(
+        (result) => {
+          localStorage.setItem('authToken', result['data']['token']['token'])
+          localStorage.setItem('id', result['data']['userDetails']['_id'])
+          localStorage.setItem('name', result['data']['userDetails']['name'])
 
-        console.log(result['data']['token'])
 
-        this.spinner.hide();
-        this.router.navigate(['/list'])
 
-      },
-      (error) => {
-        this.spinner.hide();
-        this.userNotFound = error.error.error.data;
-        console.log(error.error.error.data)
-        this.isValidCredentials = true;
-      }
-    )
-    console.log(value)
-
-  }
-  else{
-    this.http.forgotPassword(this.loginForm.value.email).subscribe(
-      (response) => {
-        if ((response['status'] = '200')) {
           this.spinner.hide();
+          this.router.navigate(['/list'])
 
-          this.router.navigate(['user']);
-          this.isFp = false;
+        },
+        (error) => {
+          this.spinner.hide();
+          this.userNotFound = error.error.error.data;
+
+          this.isValidCredentials = true;
         }
-      },
-      (error) => {
-        this.spinner.hide();
-      }
-    );
+      )
+
+
+    } else {
+      this.http.forgotPassword(this.loginForm.value.email).subscribe(
+        (response) => {
+          if ((response['status'] = '200')) {
+            this.spinner.hide();
+
+            this.router.navigate(['user']);
+            this.isFp = false;
+          }
+        },
+        (error) => {
+          this.spinner.hide();
+        }
+      );
+    }
   }
-}
   ngOnInit(): void {
     if (localStorage.getItem('isLoggedin') == 'true') {
       this.router.navigate(['dashboard']);
     }
-    this.isFp=false;
+    this.isFp = false;
   }
-public forgotPassword(){
-  this.isFp=true;
-}
+  public forgotPassword() {
+    this.isFp = true;
+  }
 
-public fpHandler(){
+  public fpHandler() {
 
-}
+  }
 }

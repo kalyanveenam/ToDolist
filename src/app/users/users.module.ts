@@ -5,7 +5,6 @@ import { UsersRoutingModule } from './users-routing.module';
 import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
 import { SharedModule } from '../shared/shared.module';
-import { SigninComponent } from './signin/signin.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -18,10 +17,13 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatExpansionModule} from '@angular/material/expansion';
+
+
 import { from } from 'rxjs';
 @NgModule({
-  declarations: [HomeComponent, SignupComponent, SigninComponent],
-  imports: [MatSnackBarModule,NgxSpinnerModule,FormsModule,MatIconModule,CommonModule,MatToolbarModule, ReactiveFormsModule,MatInputModule, UsersRoutingModule,MatButtonModule, SharedModule,MatFormFieldModule,MatCardModule,MatGridListModule,FlexLayoutModule,ListModule, SharedModule],
+  declarations: [HomeComponent, SignupComponent],
+  imports: [MatExpansionModule,MatSnackBarModule,NgxSpinnerModule,FormsModule,MatIconModule,CommonModule,MatToolbarModule, ReactiveFormsModule,MatInputModule, UsersRoutingModule,MatButtonModule, SharedModule,MatFormFieldModule,MatCardModule,MatGridListModule,FlexLayoutModule,ListModule, SharedModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class UsersModule {}

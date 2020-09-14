@@ -147,4 +147,12 @@ export class HttpService {
       }
     );
   }
+  public getAllUsers(){
+    let header = {};
+    header['Authorization'] = localStorage.getItem('authToken');
+    header['Content-type'] = 'application/json';
+    return this._http.get(this.baseUrl + '/get/users', {
+      headers: header
+    });
+  }
 }

@@ -18,13 +18,17 @@ import {
 import {
   NgxSpinnerService
 } from "ngx-spinner";
-import { MatDialog } from '@angular/material/dialog';
-import { FriendRequestComponent } from '../friend-request/friend-request.component';
+import {
+  MatDialog
+} from '@angular/material/dialog';
+import {
+  FriendRequestComponent
+} from '../friend-request/friend-request.component';
 export interface Task {
   name: string;
   completed: boolean;
   color: ThemePalette;
-  subtasks?: Task[];
+  subtasks ? : Task[];
 }
 
 @Component({
@@ -59,36 +63,35 @@ export class DashboardComponent implements OnInit {
     this.activeOpenState = true;
     this.verifyUserConfirmation();
     this.getOnlineUsers();
-    this.friends=[];
+    this.friends = [];
     this.getFriendStatus();
     this.getAcceptedFriends();
   }
-  public getAcceptedFriends(){
+  public getAcceptedFriends() {
     let currUser = localStorage.getItem('id');
- 
-    this.http.getAcceptedFriends().subscribe((result)=>{
-    
-          console.log('acc ' +JSON.stringify(result));
-          for(let i in result['data']){
-            if(result['data'][i]['fromUser']==currUser){
-              let friend = {};
-              friend['id'] = result['data'][i]['toUser'];
-              friend['name']= result['data'][i]['recieverName'];
-              this.friends.push(friend);
-            }
-            else if(result['data'][i]['toUser']==currUser){
-              let friend = {};
-              friend['id'] = result['data'][i]['fromUser'];
-              friend['name']= result['data'][i]['senderName'];
-              this.friends.push(friend);
-            }
-          }
-          console.log('my friends are '+JSON.stringify(this.friends));
+
+    this.http.getAcceptedFriends().subscribe((result) => {
+
+
+      for (let i in result['data']) {
+        if (result['data'][i]['fromUser'] == currUser) {
+          let friend = {};
+          friend['id'] = result['data'][i]['toUser'];
+          friend['name'] = result['data'][i]['recieverName'];
+          this.friends.push(friend);
+        } else if (result['data'][i]['toUser'] == currUser) {
+          let friend = {};
+          friend['id'] = result['data'][i]['fromUser'];
+          friend['name'] = result['data'][i]['senderName'];
+          this.friends.push(friend);
+        }
+      }
+
     })
   }
   public verifyUserConfirmation: any = () => {
     this.SocketService.verifyUser().subscribe((data) => {
-      console.log(this.authToken)
+
       this.SocketService.setUser(this.authToken);
       this.getOnlineUsers();
       this.offlineUser();
@@ -99,16 +102,16 @@ export class DashboardComponent implements OnInit {
   }
   selected = '';
   toggleNavbar() {
-    console.log('toggled' + this.isMenuOpened);
+
     this.isMenuOpened = !this.isMenuOpened;
   }
   getOnlineUsers() {
     this.SocketService.welcomeUser(localStorage.getItem('id')).subscribe((data) => {
       this.userNotification = data;
-      console.log("hi:" + this.userNotification)
+
     })
     this.SocketService.userOnline().subscribe((data) => {
-      console.log(data)
+
       this._snackBar.open(data, 'User online', {
         duration: 2000,
       });
@@ -116,19 +119,19 @@ export class DashboardComponent implements OnInit {
     this.SocketService.userList().subscribe((user) => {
 
       this.userList = [];
-      for (var x in user) {
-        if (!this.isUserExists(this.userList, user[x]['userId']) && user[x]['userId']!=localStorage.getItem('id') )
+      for (let x in user) {
+        if (!this.isUserExists(this.userList, user[x]['userId']) && user[x]['userId'] != localStorage.getItem('id'))
           this.userList.push(user[x]);
       }
-      console.log('hi ' + JSON.stringify(this.userList));
+
     })
   }
   public isUserExists(userList, id) {
     if (userList.length == 0)
       return false;
     else {
-      for (var x in userList) {
-        console.log('uid is '+userList[x]['userId']+' and '+localStorage.getItem('id'));
+      for (let x in userList) {
+
         if (userList[x]['userId'] == id)
           return true;
       }
@@ -141,21 +144,21 @@ export class DashboardComponent implements OnInit {
       this._snackBar.open(user, 'User offline', {
         duration: 2000,
       });
-      console.log(user)
+
     })
   }
   public getLists() {
     this.http.getLists().subscribe((response) => {
       this.lists = (response["data"])
-      console.log('lists are ' + this.lists);
+
       for (let i = 0; i < this.lists.length; i++) {
-        console.log(response['data'])
+
         this.tasks = response["data"][i].tasks;
 
         this.allTasks.push(this.tasks)
       }
 
-      //   console.log(this.tasks)
+
     });
   }
   public getTasks(list) {
@@ -168,7 +171,7 @@ export class DashboardComponent implements OnInit {
   }
 
   public update(form) {
-    console.log(form);
+
     let dirtyValues = {};
 
     Object.keys(form.controls)
@@ -183,13 +186,13 @@ export class DashboardComponent implements OnInit {
         }
       });
 
-    console.log(dirtyValues);
 
-    var changes = [];
-    for (var i in dirtyValues) {
-      var change = {};
-      var splitted = i.toString().split('_');
-      console.log(splitted);
+
+    let changes = [];
+    for (let i in dirtyValues) {
+      let change = {};
+      let splitted = i.toString().split('_');
+
       change['type'] = splitted[0];
       change['list_id'] = splitted[1];
       if (splitted[2])
@@ -201,17 +204,17 @@ export class DashboardComponent implements OnInit {
       changes.push(change);
     }
 
-    console.log('changes are ' + JSON.stringify(changes));
+
     this.http.updateList(changes).subscribe((result) => {
-      console.log(result);
+
       this.getLists();
       this.isEdit = false;
     })
   }
   public updateCheckbox(event, listid, taskid, subtaskid, type) {
-    console.log(event.checked + 'd' + listid);
-    var changes = [];
-    var change = {};
+
+    let changes = [];
+    let change = {};
     change['type'] = type;
     change['list_id'] = listid;
     if (type = 'subtask') {
@@ -224,16 +227,16 @@ export class DashboardComponent implements OnInit {
     change['field'] = 'completed';
     change['value'] = event.checked;
     changes.push(change);
-    console.log(JSON.stringify(changes));
+
     this.http.updateList(changes).subscribe((result) => {
-      console.log(result);
+
       this.getLists();
 
     })
   }
   public delete(listid, taskid, subtaskid, type) {
-    var changes = [];
-    var change = {};
+    let changes = [];
+    let change = {};
     change['type'] = type;
     change['list_id'] = listid;
     if (type = 'subtask') {
@@ -246,9 +249,9 @@ export class DashboardComponent implements OnInit {
     change['field'] = 'delete';
     change['value'] = 'delete';
     changes.push(change);
-    console.log(JSON.stringify(changes));
+
     this.http.updateList(changes).subscribe((result) => {
-      console.log(result);
+
       this.getLists();
     })
   }
@@ -256,33 +259,27 @@ export class DashboardComponent implements OnInit {
     this.http.getRequestStatus().subscribe((result) => {
 
       this.pendingRequests = result['data']
-      console.log(this.pendingRequests)
+
     })
   }
   public acceptReq(data) {
-    console.log(JSON.stringify(data.fromUser))
+
     this.http.updateRequest(data.fromUser).subscribe((result) => {
-      console.log(result);
+
     })
-
-    // const dialogRef = this.dialog.open(FriendRequestComponent);
-
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log(`Dialog result: ${result}`);
-    // });
 
   }
   public getFriends() {
     this.http.getFriends().subscribe((res) => {
-      console.log("raa" + JSON.stringify(res));
+
       this.myFriends = res['data'];
     })
 
   }
   public getFriendsListById(data) {
-    console.log(data)
-    this.http.getListsById(data).subscribe((res) => {
-      console.log(res);
+
+    this.http.getListsById(data.id).subscribe((res) => {
+
     })
 
   }

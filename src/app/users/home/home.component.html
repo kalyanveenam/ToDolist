@@ -4,12 +4,29 @@
         <div class="container">
             <h1 class="display-4"><b>WELCOME TO ED-PLANNER</b></h1>
             <q class="lead">A goal without a plan is just a wish </q><br /><br />
-            <p class="para">
-                Start creating your to do list and share with friends
-            </p>
+           
+                      <mat-accordion>
+              
+                <mat-expansion-panel (opened)="panelOpenState = true"
+                                     (closed)="panelOpenState = false">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                     How ed-Planner Works?
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <p class="para2">
+                    <mat-icon matSuffix>done</mat-icon><mat-icon matSuffix>login</mat-icon> Create a new account with ed-planner <br/>
+                    <mat-icon matSuffix>done</mat-icon><mat-icon matSuffix>add_circle_outline</mat-icon>  Click on create button to create a list, You can add multiple tasks and subtasks for the list<br/>
+                    <mat-icon matSuffix>done</mat-icon><mat-icon matSuffix>person_search</mat-icon>  User Icon will help you get the details of current online users<br/>
+                    <mat-icon matSuffix>done</mat-icon><mat-icon matSuffix>perm_contact_calendar</mat-icon>Select any online user to send friend request<br/>
+                    <mat-icon matSuffix>done</mat-icon><mat-icon matSuffix>view_list</mat-icon>  Up on accepting, user will be shown under Your friends list<br/>
+                    <mat-icon matSuffix>done_outline</mat-icon>  click on user to display their lists 
+                 </p>
+                </mat-expansion-panel>
+              </mat-accordion>
+              
         </div>
     </div>
-
     <div class="main-div">
         <div class="spacer"> </div>
         <mat-card class="card" fxFlex="25" fxFlex.xs="100%" fxFlex.sm="33%">

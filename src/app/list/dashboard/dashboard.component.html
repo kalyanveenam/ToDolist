@@ -7,7 +7,7 @@
             <a href="#" class="list-group-item list-group-item-action active">
               My Friends
             </a>
-            <a href="#" *ngFor="let friend of friends" class="list-group-item list-group-item-action" (click)="getFriendsListById(friend.fromUser)">{{friend.name}}</a>
+            <a href="#" *ngFor="let friend of friends" class="list-group-item list-group-item-action" (click)="getFriendsListById(friend)">{{friend.name}}</a>
         </div>
         <div class="list-group" >
             <a href="#" class="list-group-item list-group-item-action active">
@@ -129,5 +129,6 @@
                 list marked as Completed: {{shoes.selectedOptions.selected.length}}
               </p> -->
         </mat-accordion> <br />
+        
     </mat-sidenav-content>
 </mat-sidenav-container>
