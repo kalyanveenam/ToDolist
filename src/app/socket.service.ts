@@ -39,6 +39,9 @@ export class SocketService {
       })
     })
   }
+  public friendReq=(friend)=>{
+    this.socket.emit("friend-req",friend)
+  }
   public welcomeUser=(userid)=>{
     return Observable.create((observer)=>{
       this.socket.on(userid,(data)=>{

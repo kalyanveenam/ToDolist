@@ -5,18 +5,23 @@ import { SocketService } from 'src/app/socket.service';
 import {
   NgxSpinnerService
 } from "ngx-spinner";
+import {
+  MatSnackBar
+} from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-create-list',
   templateUrl: './create-list.component.html',
-  styleUrls: ['./create-list.component.css']
+  styleUrls: ['./create-list.component.css'],
+  providers: [SocketService]
 })
 
 export class CreateListComponent implements OnInit {
-  //public tasks:mytasks[];
+  
   mytasks = [];
   public subtasks = [];
   public subtask = {};
-  constructor(private http: HttpService, private router:Router, private socket: SocketService,private spinner: NgxSpinnerService) {
+  constructor(private http: HttpService, private router:Router, private socket: SocketService,private spinner: NgxSpinnerService, private _snackBar: MatSnackBar) {
  
 
   }
@@ -51,6 +56,14 @@ export class CreateListComponent implements OnInit {
   }
 
   public createList(data) {
+
+    this.socket.createdList("A new list has been added by "+localStorage.getItem('name'))
+    this.socket.listCreated().subscribe((data) => {
+      console.log('its here'+data)
+      this._snackBar.open(data, 'List created', {
+        duration: 3000,
+      });
+       })
     this.spinner.show();
     let payload = {};
     payload['title'] = data.value['title'];
@@ -74,11 +87,8 @@ export class CreateListComponent implements OnInit {
     
        this.http.createList(payload).subscribe((data)=>{
  
-         this.socket.createdList("Sample notification")
-         this.socket.listCreated().subscribe((data) => {
        
-        
-        })
+     
         this.spinner.hide();
          this.router.navigate(['/dashboard'])
        })

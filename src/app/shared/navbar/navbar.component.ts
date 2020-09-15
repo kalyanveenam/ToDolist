@@ -90,7 +90,8 @@ export class NavbarComponent implements OnInit {
     return false;
   }
   public sendFriendRequest(to, recieverId) {
-
+let user={to: to,recieverId: recieverId}
+this.SocketService.friendReq(user)
     this.Http.sendRequest(to, recieverId).subscribe((result) => {
 
       const dialogRef = this.dialog.open(DialogComponent);
@@ -139,7 +140,7 @@ export class NavbarComponent implements OnInit {
   }
   public getFriendStatus() {
     this.Http.getRequestStatus().subscribe((result) => {
-
+     
       this.pendingRequests = result['data']
 
     })
