@@ -1,17 +1,26 @@
-.main-div mat-card{
-    margin-left:4vw ;
-    padding: 0px;
-    border: 5px black;
-    border-radius: 10px;
+.main-div mat-card {
+  margin-left: 4vw;
+  padding: 0px;
+  border: 5px black;
+  border-radius: 10px;
 
-    }
-    .card{
-      margin-right: 3vw;
-    }
-    .form{
-        padding: 2vw;
-        padding-bottom: 7vh;
-      }
-      body{
-        background-image: url("../../../assets/Notes.jpg");
-      }
+}
+
+.card {
+  margin-right: 3vw;
+}
+
+.form {
+  padding: 2vw;
+  padding-bottom: 7vh;
+}
+
+body {
+  background-image: url("../../../assets/Notes.jpg");
+}
+
+.class-2 {
+  background-color: rgb(68, 60, 106);
+  color: aliceblue;
+  
+}

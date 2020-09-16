@@ -10,8 +10,29 @@
   color: rgb(23, 0, 61);
 }
 .user-list{
+border: 1px solid black;
+background-color:#ffd740;
+color: black;
   margin-right: 25vw;
 }
+.icon2{
+  padding-left: 6px;
+  margin-top: 1px;
+  padding-bottom: 2px;
+
+}
 .nav-bar{
+  position: fixed;
+  z-index: 500;
   background-color: aqua !important;
+}
+.sticktotop {
+  background-color: rgb(68, 60, 106);
+  position: sticky;
+  position: -webkit-sticky; /* For macOS/iOS Safari */
+  top: 0; /* Sets the sticky toolbar to be on top */
+  z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+}
+.icon{
+  color: white;
 }

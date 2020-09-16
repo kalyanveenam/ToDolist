@@ -133,6 +133,12 @@ ul {
     text-transform: capitalize;
     color: green;
 }
+.col{background-color:  rgb(68, 60, 106);
+    margin-right: 2vw;
+}
+.grp{
+    margin-right: 2vw;
+}
 
 @media (max-width: 767px) {
     .dot {

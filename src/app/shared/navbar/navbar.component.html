@@ -1,11 +1,11 @@
-<mat-toolbar color="primary" class="mat-elevation-z">
-    <span>
+<mat-toolbar  class="mat-elevation-z sticktotop" >
+    <span class="icon">
     <mat-icon>post_add</mat-icon> ED-Planner
   </span>
     <div class="spacer"> </div>
-    <button mat-icon-button [matMenuTriggerFor]="menu">
+    <button mat-icon-button [matMenuTriggerFor]="menu"  class="icon icon2">
     <!-- <mat-icon matSuffix  matBadge="15" class="notification-list" matBadgeColor="accent">notifications</mat-icon>   -->
-    <mat-icon matSuffix matBadge="{{flength}}" class="user-list" matBadgeColor="accent">person_search</mat-icon>
+    <mat-icon matSuffix matBadge="{{flength}}" class="user-list" matBadgeColor="accent">person_search</mat-icon> Users
   </button>
 
     <mat-menu #menu="matMenu" class="menu_items">

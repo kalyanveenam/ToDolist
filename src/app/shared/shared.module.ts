@@ -19,12 +19,13 @@ import {MatDividerModule} from '@angular/material/divider';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  declarations: [NavbarComponent, LogoutComponent, CorouselComponent, DialogComponent],
+  declarations: [NavbarComponent, LogoutComponent, CorouselComponent, DialogComponent, FooterComponent],
   imports: [MatDialogModule,MatBadgeModule,FormsModule,ReactiveFormsModule,CommonModule, SharedRoutingModule,MatToolbarModule,MatButtonModule,MatIconModule,MatDividerModule, SlickCarouselModule,MatExpansionModule,MatMenuModule],
   providers: [HttpService],
  entryComponents:[DialogComponent],
-  exports: [NavbarComponent,CorouselComponent],
+  exports: [NavbarComponent,CorouselComponent, FooterComponent],
 })
 export class SharedModule {}

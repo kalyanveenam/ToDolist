@@ -3,7 +3,7 @@
 <div fxLayoutAlign="center center" class="main-div" fxFlexFill>
   <div class="spacer">  </div>
   <mat-card class="card"fxFlex="25" fxFlex.xs="100%" fxFlex.sm="33%">
-    <mat-toolbar color="primary"><mat-icon>login</mat-icon> Signup</mat-toolbar><br/>
+    <mat-toolbar class="class-2"><mat-icon>login</mat-icon> Signup</mat-toolbar><br/>
     <form [formGroup]="userEmails" (ngSubmit)="onSubmit()" fxLayoutAlign="stretch" fxLayout="column" class="form">
       <mat-form-field class="example-full-width">
         <mat-label>Full Name</mat-label>
@@ -56,3 +56,5 @@
 >
   <p style="font-size: 20px; color: rgb(192, 192, 192)">Loading...</p>
 </ngx-spinner>
+
+<app-footer></app-footer>

@@ -76,9 +76,9 @@ export class DashboardComponent implements OnInit {
   {
     this.friendID =id;
     this.http.getListsById(id).subscribe((res) => {
-      console.log(res);
+      
       this.friendList =res['data'];
-      console.log('fl is '+this.friendList);
+      
     })
 
   }
@@ -311,7 +311,7 @@ this.spinner.show();
   public getFriendsListById(id) {
 
     this.http.getListsById(id).subscribe((res) => {
-      console.log(res);
+      
       this.lists =res['data'];
     })
 

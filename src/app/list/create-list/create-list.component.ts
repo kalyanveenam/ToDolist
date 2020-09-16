@@ -59,7 +59,6 @@ export class CreateListComponent implements OnInit {
 
     this.socket.createdList("A new list has been added by "+localStorage.getItem('name'))
     this.socket.listCreated().subscribe((data) => {
-      console.log('its here'+data)
       this._snackBar.open(data, 'List created', {
         duration: 3000,
       });

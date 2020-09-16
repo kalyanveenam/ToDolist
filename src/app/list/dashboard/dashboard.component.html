@@ -4,15 +4,15 @@
 
         <br/>
         <div class="list-group"  >
-            <div  class="list-group-item list-group-item-action active">
+            <div  class="list-group-item list-group-item-action active col">
               My Friends
             </div>
-            <a *ngFor="let friend of friends" class="list-group-item list-group-item-action" (click)="getFriendList(friend.id)">{{friend.name}}</a>
+            <a *ngFor="let friend of friends" class="list-group-item list-group-item-action grp"  (click)="getFriendList(friend.id)">{{friend.name}}</a>
         </div>
-        <div class="list-group" >
-            <div  class="list-group-item list-group-item-action active"> Friend Requests <button mat-icon-button (click)="refresh()" >
+        <div class="list-group grp " >
+            <div  class="list-group-item list-group-item-action active col">  Requests
+                <button mat-icon-button (click)="refresh()" >
                 <mat-icon >refresh</mat-icon>
-
             </button>
 
             </div>
@@ -25,18 +25,7 @@
         <br />
     </mat-sidenav>
     <mat-sidenav-content class="sidenav-content">
-        <mat-accordion>
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="online-users">
-                <mat-expansion-panel-header>
-                    <mat-panel-title> <span class="dot">.</span> Online users </mat-panel-title>
-                </mat-expansion-panel-header>
-                <mat-card class="example-card">
-                    <mat-list role="list" fxFlex="50" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let users of userList">
-                        <mat-list-item role="listitem">{{users.name.name}}<br /></mat-list-item>
-                    </mat-list>
-                </mat-card>
-            </mat-expansion-panel>
-        </mat-accordion>
+    
         <br />
         <br />
         <button mat-icon-button [routerLink]="['/list/create']">
@@ -196,3 +185,5 @@
         </mat-accordion> <br />
     </mat-sidenav-content>
 </mat-sidenav-container>
+
+<app-footer></app-footer>

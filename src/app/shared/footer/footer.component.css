@@ -1,0 +1,14 @@
+.footer {
+    position: static;
+    border: 2px solid gray;
+    box-shadow: 10px 10px 20px gray;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color:rgb(68, 60, 106);
+    color: white;
+    text-align: center;
+  }
+  .icon-pos{
+      padding-bottom: 1vw;
+  }
