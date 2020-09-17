@@ -3,10 +3,7 @@
     <mat-icon>post_add</mat-icon> ED-Planner
   </span>
     <div class="spacer"> </div>
-    <button mat-icon-button [matMenuTriggerFor]="menu"  class="icon icon2">
-    <!-- <mat-icon matSuffix  matBadge="15" class="notification-list" matBadgeColor="accent">notifications</mat-icon>   -->
-    <mat-icon matSuffix matBadge="{{flength}}" class="user-list" matBadgeColor="accent">person_search</mat-icon> Users
-  </button>
+   
 
     <mat-menu #menu="matMenu" class="menu_items">
         <h3 mat-subheader style="text-align: center;  height: 12px;">Your friends</h3>
@@ -36,11 +33,11 @@
   <span >{{person.name}}</span><span *ngIf="isCompleted()"> Pending</span>
 </button>
     </mat-menu>
-
-
-    <button mat-button [routerLink]="['/user']" *ngIf="!isLoggedin">Home</button>
-    <button mat-raised-button color="accent" *ngIf="isLoggedin" [matMenuTriggerFor]="logout">
-    <mat-icon>account_circle</mat-icon>Hello {{uname}}
+    <button mat-button [matMenuTriggerFor]="menu"  class="icon icon2" color="accent" class="users-btn">
+      Users<mat-icon matSuffix matBadge="{{flength}}" class="user-list" matBadgeColor="warn">person_search</mat-icon> 
+  </button>
+    <button mat-raised-button color="accent" *ngIf="isLoggedin" [matMenuTriggerFor]="logout" class="name-btn">
+    <mat-icon>power_settings_new</mat-icon>Hello {{uname}}
   </button>
     <mat-menu #logout="matMenu">
         <button mat-button (click)="lout()">

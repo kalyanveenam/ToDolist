@@ -135,11 +135,15 @@ ul {
 }
 .col{background-color:  rgb(68, 60, 106);
     margin-right: 2vw;
+    padding-bottom: 0%;
 }
 .grp{
     margin-right: 2vw;
 }
 
+.nopad{
+    margin-bottom: 0%;
+}
 @media (max-width: 767px) {
     .dot {
         height: 20px;

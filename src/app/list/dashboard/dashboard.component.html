@@ -3,13 +3,13 @@
     <mat-sidenav mode="side" #sidenav id="sidenav" [class.menu-open]="isMenuOpened" [class.menu-open]="!isMenuOpened" opened>
 
         <br/>
-        <div class="list-group"  >
+        <div class="list-group nopad"  >
             <div  class="list-group-item list-group-item-action active col">
               My Friends
             </div>
             <a *ngFor="let friend of friends" class="list-group-item list-group-item-action grp"  (click)="getFriendList(friend.id)">{{friend.name}}</a>
         </div>
-        <div class="list-group grp " >
+        <div class="list-group " >
             <div  class="list-group-item list-group-item-action active col">  Requests
                 <button mat-icon-button (click)="refresh()" >
                 <mat-icon >refresh</mat-icon>
@@ -21,8 +21,7 @@
                 {{requests.senderName}}</a>
         </div>
         <mat-divider></mat-divider>
-        <br />
-        <br />
+       
     </mat-sidenav>
     <mat-sidenav-content class="sidenav-content">
     

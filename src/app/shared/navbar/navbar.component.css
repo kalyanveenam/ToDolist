@@ -10,10 +10,10 @@
   color: rgb(23, 0, 61);
 }
 .user-list{
-border: 1px solid black;
+
 background-color:#ffd740;
 color: black;
-  margin-right: 25vw;
+
 }
 .icon2{
   padding-left: 6px;
@@ -35,4 +35,16 @@ color: black;
 }
 .icon{
   color: white;
+}
+.users-btn{
+  color: black;
+  background-color: #ffd740;
+  padding-right: 0%;
+  padding-left: 0%;
+  width: fit-content;
+  border: 1px solid black;
+}
+.name-btn{
+  margin-left: 1vw;
+margin-right: 0%;
 }
